@@ -1,10 +1,10 @@
 -----BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
+Hash: SHA256
 
 Origin: yarn
 Label: yarn
 Codename: stable
-Date: Sun, 09 Oct 2016 21:46:45 UTC
+Date: Sun, 09 Oct 2016 22:17:24 UTC
 Architectures: i386 amd64
 Components: main
 Description: Repository for stable releases of Yarn
@@ -32,17 +32,17 @@ SHA256:
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v2.0.22 (GNU/Linux)
 
-iQIcBAEBAgAGBQJX+rrFAAoJENEB94mdQfPDkD0P/2BAfU3+pQILE0Up3b/zv3Cf
-XkcIkxVahGRIFGtDINBLpbRFxLBdGMd1DwD8Teo0h+K3rWFT1LNtB1TC2DKj2Bgw
-i8Oezh8cyDetPqUKX7sAnxWEpowv+QTlP/3yVixML5vCIgrv6hmooprLeSKJhLdK
-DBppFCA0qakjqmvHgBvJxXv5AfcOb30uVXVCjnUq4T+UVfYRPPgsiscjScJBPyNY
-7Q0kQt9uGs35bDyTIbVhTbei+wFzfbZOxmEYFigMgXIvCFdf81/PdLwmuow3jwnv
-Qny2kJHdFaJtz+sgIw7y4Z94sidAIMKREhYIZBxjjv3g5nM1KbPrntuDYlaqwztq
-3EpPlkW5jjeS+pRbWOafYTAT0Kzr2d7I70UVgGB4qj587wRQVWuqvKh++bGZHRvY
-YuZZTJ3IR1wnrIhBJzNQsaCe4CkkQFVmXhGnV9/pl3KFJ+33JrB41swc7VBeTEQE
-r2fXsvftVbtwvpKInPp0Z8u5wFyeDOZyOja2OC64//9smilZmBI3PzStcd86k4Rd
-qrAJ+sdJMVm2Bgl6znQwp0DVfDmkEFshRHf1dxuHwC2yJuP/xyttpE+oO/r+3MgQ
-YBwZxp9HtBZdSzNokbVuUDNUoQMG2821itOH5h1leWKJOvrlS/dGBjQpyAWKWFVO
-1BElLqrkcy9mf6ohd/xS
-=14dB
+iQIcBAEBCAAGBQJX+sH0AAoJENEB94mdQfPDSwgP/1kxwaaioR0v31X2TJrMqHBg
+ltpxPOsjyMmYWRVONc8yCvYw/K7TlL65cyWfPJ/R6a3hJhY1b8TJAEOuZdFA670x
+KTUJu3ROOzJ61iCeNRmsMWi4qMZapBK0hxkA3KC3sJoKKr/g22uPCiH5P1YA7wqX
+ILNp3RLG0KzbOE+EdI755ZWWdG+h8RZHsuVJcHjzhgH57KWuk9pF+usu1y6AURxs
+/d7QU4+2sBSPCPUkBuji22YmrJgUMY53iaER77NHalr98DCfCpjEfQqHCEqlusJ0
+rIUeHQh0691stFWB7ueFzAmg8pd1S1+yha7q8GrDNfp1zKS5tDhzUXp/ud4tvbVL
+Try5AI1FzY/UKQrK9xAoPZ8NksFv9dQZEoXQrMWnR3HeK0tr6Ja8VOC1Pm3r1yyv
+GcbIFNdjuf8Bw5nfOF6TNritw5ifNpMYTmQqTeYsPMNAhElTTNRZJwxwK4SKtClO
++x6ghGtytJkgCS+el7ANwON/VwqTZ4xz073LoGsHmfW6n7SYRKapEdqb4xFeMcUr
++NbmcvEg1oYHAogrGBlGcXdsANOTtAFxhsrRto1iMNxaT4g+ZcbhFrNajAsy9BXW
+cIOeGkni4L6IJHCqkKfGl6oaL11tNwNt63NWICIPVExE5tMP7YHwsgJpnivx7/yv
+l/cfrOdv0FIYTeVFonBz
+=uj8T
 -----END PGP SIGNATURE-----
