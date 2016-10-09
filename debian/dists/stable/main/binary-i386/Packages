@@ -1,0 +1,18 @@
+Package: yarn-helloworld
+Version: 0.0.1
+License: BSD
+Vendor: Yarn Contributors <yarn@dan.cx>
+Architecture: all
+Maintainer: Yarn Contributors <yarn@dan.cx>
+Installed-Size: 0
+Homepage: https://yarnpkg.com/
+Priority: extra
+Section: default
+Filename: pool/main/y/yarn-helloworld/yarn-helloworld_0.0.1_all.deb
+Size: 1132
+SHA256: a94dce3189d95fe16c65fbd2e2c6385bc534b4f93313d09d414431b8e5e7eaf7
+SHA1: 98e22c1e78c769125c6aeb587db62755f93003c5
+MD5sum: 042f50281d851f8b2618fa6192a4087d
+Description: Hello world 1
+ Hello world 2
+
