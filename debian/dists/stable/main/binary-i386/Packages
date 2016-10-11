@@ -2,32 +2,29 @@ Package: yarn
 Version: 0.15.0-1
 Depends: nodejs (>= 4.0.0)
 Architecture: all
-Installed-Size: 26552
+Installed-Size: 26556
 Maintainer: Yarn Developers <yarn@dan.cx>
 Homepage: https://yarnpkg.com/
 Priority: optional
 Section: devel
 Filename: pool/main/y/yarn/yarn_0.15.0-1_all.deb
-Size: 1625160
-SHA256: 0f7247802b13a631d64c114a562a48c35d3fc63021dca02bf7cd490180d40d8d
-SHA1: f5591422128acdf680859b324f024e991c26bd2c
-MD5sum: 40fbb62bb1b354b6d58280421d135d46
-Description: Package manager for the npm and bower package repositories
- Yarn is a package manager for the npm and bower registries with a few specific
- focuses.
+Size: 1626214
+SHA256: ca82094e9945b6c788b950c8910f2be28a2c1ffd69661d4b9f7066b3ad172ae9
+SHA1: de393a471f2d328d62c1a92f36801601f4e773d3
+MD5sum: 91ad9987bcb4d88009c290f49c498187
+Description: Fast, reliable, and secure dependency management.
+ Yarn: Fast, reliable, and secure dependency management.
  .
- Determinism: Based around a version lockfile which ensures that operations on
- the dependency graph can be easily transitioned. We check module directories
- and verify their integrity to ensure yarn install always produces the same file
- structure.
+ Fast: Yarn caches every package it downloads so it never needs to again. It
+ also parallelizes operations to maximize resource utilization so install times
+ are faster than ever.
  .
- Security: Strict guarantees are placed around package installation. You have
- control over whether lifecycle scripts are executed for packages and package
- hashes are stored in the lockfile to ensure you get the same package each time.
+ Reliable: Using a detailed, but concise, lockfile format, and a deterministic
+ algorithm for installs, Yarn is able to guarantee that an install that worked
+ on one system will work exactly the same way on any other system.
  .
- Performance: We're always performing operations such as package resolving and
- fetching in parallel. This ensures little idle time and maximum resource
- utilization.
+ Secure: Yarn uses checksums to verify the integrity of every installed package
+ before its code is executed.
 
 Package: yarn-helloworld
 Version: 0.0.1
