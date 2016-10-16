@@ -17,7 +17,7 @@ RPM_OUTDATED=$?
 
 if [[ $DEBIAN_OUTDATED -eq 0 && $RPM_OUTDATED -eq 0 ]]; then
   echo 'Both packages are up-to-date'
-  exit 0
+  exit 100
 fi;
 
 if [ $DEBIAN_OUTDATED -ne 0 ]; then
@@ -30,12 +30,13 @@ fi;
 
 if [ $RPM_OUTDATED -ne 0 ]; then
   echo 'Updating RPM'
-  RPM_TEMP=`mktemp --suffix=.rpm`
-  wget https://yarnpkg.com/latest.rpm -O $RPM_TEMP
+  RPM_TEMP_DIR=`mktemp -d`
+  wget --content-disposition -P $RPM_TEMP_DIR https://yarnpkg.com/latest.rpm
   pushd rpm
-  ./add-rpm-package.sh $RPM_TEMP
+  ./add-rpm-package.sh "$RPM_TEMP_DIR/"*.rpm
   popd
-  rm $RPM_TEMP
+  rm "$RPM_TEMP_DIR/"*.rpm
+  rmdir $RPM_TEMP_DIR
 fi;
 
 echo 'Updated!'
