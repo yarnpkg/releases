@@ -1,18 +1,18 @@
 Package: yarn
-Version: 0.15.1-2
+Version: 0.16.0-1
 Recommends: nodejs
 Conflicts: nodejs (<< 4.0.0)
 Architecture: all
-Installed-Size: 22668
+Installed-Size: 19904
 Maintainer: Yarn Developers <yarn@dan.cx>
 Homepage: https://yarnpkg.com/
 Priority: optional
 Section: devel
-Filename: pool/main/y/yarn/yarn_0.15.1-2_all.deb
-Size: 1545568
-SHA256: 04f82cde727e9e525df7b5f0f4f2e2d54afe83185341ed84ff63598ce8262485
-SHA1: ee177cad831fe4ce715c5da08786f7255bd9ba84
-MD5sum: 2a1ea6f971812e6d8b7704f9dc72b498
+Filename: pool/main/y/yarn/yarn_0.16.0-1_all.deb
+Size: 1471334
+SHA256: 54bd663ad1c97e0464e5d726a457e3bf67d8e7c5ff32d771d6f1a48b549cfdc7
+SHA1: da5acecfd1ea8ffd286e4473c5e1ba4f84cd662f
+MD5sum: bc75690d43f25a32c101eb5cbb7af50b
 Description: Fast, reliable, and secure dependency management.
  Yarn: Fast, reliable, and secure dependency management.
  .
