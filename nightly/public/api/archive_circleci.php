@@ -51,16 +51,13 @@ $build = call_circleci('project/github/yarnpkg/yarn/'.$build_num);
 validate_build($build);
 
 // Download the artifacts in parallel
-$artifact_client = new Client(['defaults' => [
-    'verify' => false
-]]);
+$artifact_client = new Client();
 $artifacts = call_circleci('project/github/yarnpkg/yarn/'.$build_num.'/artifacts');
 $promises = [];
 foreach ($artifacts as $artifact) {
   $filename = basename($artifact->path);
   $requests[$filename] = $artifact_client->getAsync($artifact->url, [
     'sink' => __DIR__.'/../'.$filename,
-    'verify' => false,
   ]);
 }
 $results = Promise\unwrap($requests);
