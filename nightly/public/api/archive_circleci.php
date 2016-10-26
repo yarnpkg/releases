@@ -27,32 +27,37 @@ function call_circleci($uri) {
   ])));
 }
 
+function validate_build($build) {
+  if ($build->branch !== 'master' || $build->username !== 'yarnpkg' || $build->reponame !== 'yarn') {
+    api_response('Not archiving; this build is not on the yarnpkg master branch');
+  }
+}
+
 $payload = json_decode(file_get_contents('php://input'));
 if (empty($payload)) {
   api_error('400', 'No payload provided');
 }
+// First validate the data that was passed in as the payload. If the branch
+// or repo name is not valid, we can quit early (before calling CircleCI's API)
+validate_build($payload->payload);
 $build_num = $payload->payload->build_num;
 if (empty($build_num)) {
   api_error('400', 'No build number found');
 }
 
-// Load this build from their API to ensure the data is legit
+// Now, load this build from their API and revalidate it, to ensure it's legit
+// and the client isn't tricking us.
 $build = call_circleci('project/github/yarnpkg/yarn/'.$build_num);
-if ($build->branch !== 'master') {
-  api_response('Not archiving; this build is not on the master branch');
-}
+validate_build($build);
 
 // Download the artifacts in parallel
-$artifact_client = new Client(['defaults' => [
-    'verify' => false
-]]);
+$artifact_client = new Client();
 $artifacts = call_circleci('project/github/yarnpkg/yarn/'.$build_num.'/artifacts');
 $promises = [];
 foreach ($artifacts as $artifact) {
   $filename = basename($artifact->path);
   $requests[$filename] = $artifact_client->getAsync($artifact->url, [
     'sink' => __DIR__.'/../'.$filename,
-    'verify' => false,
   ]);
 }
 $results = Promise\unwrap($requests);
