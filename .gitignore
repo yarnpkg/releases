@@ -1,1 +1,7 @@
 temp/
+nightly/vendor/
+nightly/public/*.deb
+nightly/public/*.msi
+nightly/public/*.rpm
+nightly/public/*.tar.gz
+nightly/public/yarn-*.js
