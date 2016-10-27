@@ -56,6 +56,9 @@ $build_num = $payload->payload->build_num;
 if (empty($build_num)) {
   api_error('400', 'No build number found');
 }
+if ($payload->payload->status !== 'success') {
+  api_response(sprintf('Build #%s in wrong status (%s), not archiving it', $build_num, $payload->payload->status));
+}
 
 // Now, load this build from their API and revalidate it, to ensure it's legit
 // and the client isn't tricking us.
@@ -80,4 +83,20 @@ foreach ($artifacts as $artifact) {
 }
 $results = Promise\unwrap($requests);
 
-api_response("Successfully archived these artifacts:\n".implode("\n", array_keys($requests)));
+// Update latest.json to point to the newest files
+$latest_manifest_path = __DIR__.'/../latest.json';
+$latest = file_exists($latest_manifest_path)
+  ? json_decode(file_get_contents($latest_manifest_path))
+  : (object)['files' => (object)[]];
+foreach ($requests as $filename => $_) {
+  // Assumes there's only one file per extension
+  $extension = pathinfo($filename, PATHINFO_EXTENSION);
+  $latest->files->$extension = 'https://nightly.yarnpkg.com/'.$filename;
+}
+file_put_contents($latest_manifest_path, json_encode($latest, JSON_PRETTY_PRINT));
+
+api_response(sprintf(
+  "Successfully archived these artifacts for build %s:\n%s",
+  $build_num,
+  implode("\n", array_keys($requests))
+));
