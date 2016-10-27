@@ -1,6 +1,7 @@
 {
     "require": {
-        "guzzlehttp/guzzle": "~6.0"
+        "guzzlehttp/guzzle": "~6.0",
+        "analog/analog": "^1.0"
     },
     "autoload": {
         "classmap": ["lib/"]

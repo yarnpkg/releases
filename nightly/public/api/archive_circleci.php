@@ -12,8 +12,11 @@
 
 require(__DIR__.'/../../lib/api-core.php');
 
+use Analog\Analog;
 use GuzzleHttp\Client;
 use GuzzleHttp\Promise;
+
+Analog::handler(__DIR__.'/../../logs/archive_circleci.log');
 
 const API_URL = 'https://circleci.com/api/v1.1/%s?circle-token=%s';
 
@@ -28,8 +31,17 @@ function call_circleci($uri) {
 }
 
 function validate_build($build) {
-  if ($build->branch !== 'master' || $build->username !== 'yarnpkg' || $build->reponame !== 'yarn') {
-    api_response('Not archiving; this build is not on the yarnpkg master branch');
+  if (
+    $build->branch !== Config::BRANCH ||
+    $build->username !== Config::ORG_NAME ||
+    $build->reponame !== Config::REPO_NAME
+  ) {
+    api_response(sprintf(
+      'Not archiving; this build is not on the correct branch: %s/%s/%s',
+      $build->username,
+      $build->reponame,
+      $build->branch
+    ));
   }
 }
 
@@ -47,12 +59,18 @@ if (empty($build_num)) {
 
 // Now, load this build from their API and revalidate it, to ensure it's legit
 // and the client isn't tricking us.
-$build = call_circleci('project/github/yarnpkg/yarn/'.$build_num);
+$project_uri = sprintf(
+  'project/github/%s/%s/%s',
+  Config::ORG_NAME,
+  Config::REPO_NAME,
+  $build_num
+);
+$build = call_circleci($project_uri);
 validate_build($build);
 
 // Download the artifacts in parallel
 $artifact_client = new Client();
-$artifacts = call_circleci('project/github/yarnpkg/yarn/'.$build_num.'/artifacts');
+$artifacts = call_circleci($project_uri.'/artifacts');
 $promises = [];
 foreach ($artifacts as $artifact) {
   $filename = basename($artifact->path);
