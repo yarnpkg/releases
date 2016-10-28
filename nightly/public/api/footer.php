@@ -35,7 +35,7 @@
 
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
-    <script type="text/javascript" src="/js/docsearch.js"></script>
+    <script type="text/javascript" src="https://yarnpkg.com/js/docsearch.js"></script>
   </footer>
 </div>
 <script>

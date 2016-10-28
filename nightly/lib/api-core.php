@@ -13,6 +13,7 @@ function api_response($message) {
 }
 function api_error($code, $message) {
 	header('Status: ' . $code . ' ' . $message);
+	header('Content-Type: text/plain');
 	echo htmlspecialchars($message);
 	Analog::warning($message);
 	die();
@@ -22,5 +23,6 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
 	throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
 });
 set_exception_handler(function($exception) {
+	Analog::warning($exception);
 	api_error('500', $exception->getMessage());
 });

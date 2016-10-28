@@ -7,4 +7,6 @@ class Config {
   const BRANCH = 'master';
 
   const CIRCLECI_TOKEN = 'CHANGEME';
+
+  const ARTIFACT_PATH = __DIR__.'/../public/';
 }
