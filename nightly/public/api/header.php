@@ -16,7 +16,7 @@ $path = htmlspecialchars($_SERVER['REQUEST_URI']);
     <meta property="og:image" content="https://yarnpkg.com/assets/og_image.png" />
     <meta property="og:description" content="Fast, reliable, and secure dependency management." />
 
-    <title>Index of <?= $path ?> | Nightly Builds | Yarn</title>
+    <title>Nightly Builds: <?= $path ?> | Yarn</title>
     <meta name="description" content="Fast, reliable, and secure dependency management.">
 
     <link rel="canonical" href="https://yarnpkg.com/en/docs/cli/">
@@ -186,19 +186,3 @@ $path = htmlspecialchars($_SERVER['REQUEST_URI']);
 
 <div class="row">
   <div class="col-md-12 guide">
-
-
-
-
-
-
-
-
-
-    <div class="guide-content">
-      <p>These are the latest and greatest builds of Yarn. These builds are not gauaranteed to be stable! Use at your own risk. Quick links:</p>
-      <ul>
-        <li><a href="/latest.json">/latest.json</a>: Latest version number and download links in JSON format</li>
-        <li><a href="/latest.tar.gz">/latest.tar.gz</a>: Tarball of the latest Yarn nightly release</li>
-        <li><a href="/latest.deb">/latest.deb</a>: Debian package of the latest Yarn nightly release</li>
-      </ul>

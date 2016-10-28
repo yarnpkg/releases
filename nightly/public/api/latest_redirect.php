@@ -15,8 +15,8 @@ if ($dot_pos !== false) {
 
 // Check if we have a file of that type
 $latest = json_decode(file_get_contents(__DIR__.'/../latest.json'));
-if (!empty($latest->files->$extension)) {
-  header('Location: '.$latest->files->$extension);
+if (!empty($latest->$extension)) {
+  header('Location: '.$latest->$extension->url);
 } else {
   header('Status: 404 Not Found');
 }

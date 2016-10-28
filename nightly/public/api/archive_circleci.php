@@ -78,7 +78,7 @@ $promises = [];
 foreach ($artifacts as $artifact) {
   $filename = basename($artifact->path);
   $requests[$filename] = $artifact_client->getAsync($artifact->url, [
-    'sink' => __DIR__.'/../'.$filename,
+    'sink' => Config::ARTIFACT_PATH.'/'.$filename,
   ]);
 }
 $results = Promise\unwrap($requests);
@@ -87,11 +87,15 @@ $results = Promise\unwrap($requests);
 $latest_manifest_path = __DIR__.'/../latest.json';
 $latest = file_exists($latest_manifest_path)
   ? json_decode(file_get_contents($latest_manifest_path))
-  : (object)['files' => (object)[]];
+  : (object)[];
 foreach ($requests as $filename => $_) {
   // Assumes there's only one file per extension
   $extension = pathinfo($filename, PATHINFO_EXTENSION);
-  $latest->files->$extension = 'https://nightly.yarnpkg.com/'.$filename;
+  $latest->$extension = [
+    // TODO 'date' => ...
+    'filename' => $filename,
+    'url' => 'https://nightly.yarnpkg.com/'.$filename,
+  ];
 }
 file_put_contents($latest_manifest_path, json_encode($latest, JSON_PRETTY_PRINT));
 
