@@ -6,5 +6,5 @@
 # aptly publish repo -gpg-key=FD2497F5 -architectures=i386,amd64 yarn-nightly yarn-nightly
 
 set -ex
-aptly repo add ./public/
+aptly repo add -remove-files=true yarn-nightly ./deb-incoming/
 aptly publish update -gpg-key=FD2497F5 nightly yarn-nightly

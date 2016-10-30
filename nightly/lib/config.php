@@ -9,4 +9,5 @@ class Config {
   const CIRCLECI_TOKEN = 'CHANGEME';
 
   const ARTIFACT_PATH = __DIR__.'/../public/';
+  const DEBIAN_INCOMING_PATH = __DIR__.'/../deb-incoming/';
 }

@@ -78,7 +78,7 @@ $promises = [];
 foreach ($artifacts as $artifact) {
   $filename = basename($artifact->path);
   $requests[$filename] = $artifact_client->getAsync($artifact->url, [
-    'sink' => Config::ARTIFACT_PATH.'/'.$filename,
+    'sink' => Config::ARTIFACT_PATH.$filename,
   ]);
 }
 $results = Promise\unwrap($requests);
@@ -96,6 +96,15 @@ foreach ($requests as $filename => $_) {
     'filename' => $filename,
     'url' => 'https://nightly.yarnpkg.com/'.$filename,
   ];
+
+  // If it's a Debian package, also copy it to the incoming directory.
+  // This is used to populate the Debian repository.
+  if ($extension === 'deb') {
+    copy(
+      Config::ARTIFACT_PATH.$filename,
+      Config::DEBIAN_INCOMING_PATH.$filename
+    );
+  }
 }
 file_put_contents($latest_manifest_path, json_encode($latest, JSON_PRETTY_PRINT));
 
