@@ -88,9 +88,8 @@ $results = Promise\unwrap($requests);
 $output = '';
 
 // Update latest.json to point to the newest files
-$latest_manifest_path = __DIR__.'/../latest.json';
-$latest = file_exists($latest_manifest_path)
-  ? json_decode(file_get_contents($latest_manifest_path))
+$latest = ArtifactManifest::exists()
+  ? ArtifactManifest::load();
   : (object)[];
 foreach ($requests as $filename => $_) {
   $output .= $filename.'... ';
@@ -121,7 +120,7 @@ foreach ($requests as $filename => $_) {
 
   $output .= "Done.\n";
 }
-file_put_contents($latest_manifest_path, json_encode($latest, JSON_PRETTY_PRINT));
+ArtifactManifest::save($latest);
 
 $output .= sprintf("\nArchiving of build %s completed!", $build_num);
 echo $output;

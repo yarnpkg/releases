@@ -14,7 +14,7 @@ if ($dot_pos !== false) {
 }
 
 // Check if we have a file of that type
-$latest = json_decode(file_get_contents(Config::ARTIFACT_PATH.'latest.json'));
+$latest = ArtifactManifest::load();
 if (!empty($latest->$extension)) {
   header('Location: '.$latest->$extension->url);
 } else {
