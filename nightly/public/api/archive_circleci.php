@@ -56,7 +56,10 @@ $build_num = $payload->payload->build_num;
 if (empty($build_num)) {
   api_error('400', 'No build number found');
 }
-if ($payload->payload->status !== 'success') {
+if (
+  $payload->payload->status !== 'success' &&
+  $payload->payload->status !== 'fixed'
+) {
   api_response(sprintf('Build #%s in wrong status (%s), not archiving it', $build_num, $payload->payload->status));
 }
 
@@ -82,6 +85,7 @@ foreach ($artifacts as $artifact) {
   ]);
 }
 $results = Promise\unwrap($requests);
+$output = '';
 
 // Update latest.json to point to the newest files
 $latest_manifest_path = __DIR__.'/../latest.json';
@@ -89,13 +93,13 @@ $latest = file_exists($latest_manifest_path)
   ? json_decode(file_get_contents($latest_manifest_path))
   : (object)[];
 foreach ($requests as $filename => $_) {
-  echo $filename, '... ';
+  $output .= $filename.'... ';
   $full_path = Config::ARTIFACT_PATH.$filename;
 
   $metadata = ArtifactFileUtils::getMetadata(new SplFileInfo($full_path));
   if (!$metadata) {
     unlink($full_path); // Scary!
-    echo "Skipped (unknown type)\n";
+    $output .= "Skipped (unknown type)\n";
   }
 
   $latest->{$metadata['type']} = [
@@ -112,11 +116,13 @@ foreach ($requests as $filename => $_) {
       Config::ARTIFACT_PATH.$filename,
       Config::DEBIAN_INCOMING_PATH.$filename
     );
-    echo 'Queued for adding to Debian repo, ';
+    $output .= 'Queued for adding to Debian repo, ';
   }
 
-  echo "Done.\n";
+  $output .= "Done.\n";
 }
 file_put_contents($latest_manifest_path, json_encode($latest, JSON_PRETTY_PRINT));
 
-echo sprintf("\nArchiving of build %s completed!", $build_num);
+$output .= sprintf("\nArchiving of build %s completed!", $build_num);
+echo $output;
+Analog::info($output);
