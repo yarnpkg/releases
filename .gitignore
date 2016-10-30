@@ -7,3 +7,4 @@ nightly/public/*.tar.gz
 nightly/public/yarn-*.js
 nightly/logs/
 nightly/public/latest.json
+nightly/deb-incoming/
