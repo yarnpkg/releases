@@ -1,49 +1,43 @@
 <?php
+declare(strict_types=1);
+error_reporting(E_ALL);
 require('../../vendor/autoload.php');
-$groups = [
-  'gz' => 'Tarball',
-  'deb' => 'Debian package',
-  'rpm' => 'RPM',
-  'js' => 'Standalone JS',
-];
 
 // Latest files
 $latest_filenames = [];
 $latest_files = [];
 $latest_manifest = json_decode(file_get_contents(Config::ARTIFACT_PATH.'/latest.json'));
 foreach ($latest_manifest as $type => $details) {
-  $latest_files[] = new SplFileInfo(Config::ARTIFACT_PATH.'/'.$details->filename);
+  $latest_files[] = ArtifactFileUtils::getMetadata(
+    new SplFileInfo(Config::ARTIFACT_PATH.'/'.$details->filename)
+  );
   $latest_filenames[$details->filename] = true;
 }
 usort($latest_files, function ($a, $b) {
-  return strcmp($a->getFileName(), $b->getFileName());
+  return strcmp($a['file']->getFileName(), $b['file']->getFileName());
 });
 
 // All available files
 $dir = new FileSystemIterator(Config::ARTIFACT_PATH);
 $grouped_files = [];
 foreach ($dir as $file) {
+  $metadata = ArtifactFileUtils::getMetadata($file);
+
   if (
-    // Exclude directories
-    !$file->isFile() ||
-    // Exclude yarn-legacy
-    strpos($file->getFileName(), '-legacy') !== false ||
-    // Exclude files that don't match our extensions
-    !array_key_exists($file->getExtension(), $groups) ||
+    !$metadata ||
     // Exclude files already included in the "latest" section at the top
     !empty($latest_filenames[$file->getFileName()])
   ) {
     continue;
   }
-  $extension = $file->getExtension();
-  if (!isset($grouped_files[$extension])) {
-    $grouped_files[$extension] = [];
+  if (!isset($grouped_files[$metadata['type']])) {
+    $grouped_files[$metadata['type']] = [];
   }
 
-  $grouped_files[$extension][] = $file;
+  $grouped_files[$metadata['type']][] = $metadata;
 }
 
-function render_filename($file) {
+function render_filename(SplFileInfo $file) {
 ?>
   <a href="<?= htmlspecialchars($file->getFileName()) ?>">
     <?= htmlspecialchars($file->getFileName()) ?>
@@ -51,8 +45,8 @@ function render_filename($file) {
 <?php
 }
 
-function render_date($file) {
-  $date = gmdate('c', $file->getMTime());
+function render_date(array $file) {
+  $date = gmdate('c', $file['date']);
 ?>
   <time datetime="<?= $date ?>">
     <?= timeAgoInWords($date) ?>
@@ -84,9 +78,9 @@ require('header.php');
   <tbody>
     <?php foreach ($latest_files as $file) { ?>
       <tr>
-        <td><?= render_filename($file) ?></td>
-        <td><?= $groups[$file->getExtension()] ?></td>
-        <td><?= ArtifactFileUtils::formatSize($file->getSize()) ?></td>
+        <td><?= render_filename($file['file']) ?></td>
+        <td><?= ArtifactFileUtils::getTypeName($file['type']) ?></td>
+        <td><?= ArtifactFileUtils::formatSize($file['file']->getSize()) ?></td>
         <td><?= render_date($file) ?></td>
       </tr>
     <?php } ?>
@@ -97,9 +91,9 @@ require('header.php');
 <div class="tabs">
   <div class="nav nav-tabs bg-faded text-xs-center">
     <ul class="nav navbar-nav nav-inline">
-      <?php foreach ($groups as $extension => $group_name) { ?>
+      <?php foreach (ArtifactFileUtils::$type_names as $extension => $type_name) { ?>
         <a id="<?= $extension ?>-tab" class="nav-item nav-link" data-toggle="tab" href="#<?= $extension ?>">
-          <?= $group_name ?>
+          <?= $type_name ?>
         </a>
       <?php } ?>
     </ul>
@@ -108,9 +102,8 @@ require('header.php');
   <div class="tab-content">
     <?php
     foreach ($grouped_files as $extension => $files) {
-      // Sort files by name descending
       usort($files, function ($a, $b) {
-        return strcmp($b->getFileName(), $a->getFileName());
+        return $b['date'] - $a['date'];
       });
       ?>
       <div class="tab-pane" id="<?= $extension ?>">
@@ -125,8 +118,8 @@ require('header.php');
           <tbody>
             <?php foreach ($files as $file) { ?>
               <tr>
-                <td><?= render_filename($file) ?></td>
-                <td><?= ArtifactFileUtils::formatSize($file->getSize()) ?></td>
+                <td><?= render_filename($file['file']) ?></td>
+                <td><?= ArtifactFileUtils::formatSize($file['file']->getSize()) ?></td>
                 <td><?= render_date($file) ?></td>
               </tr>
             <?php } ?>
@@ -138,4 +131,4 @@ require('header.php');
 </div>
 
 <?php require('footer.php') ?>
-<script>$('#gz-tab').tab('show')</script>
+<script>$('#tar-tab').tab('show')</script>
