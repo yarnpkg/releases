@@ -186,3 +186,4 @@ $path = htmlspecialchars($_SERVER['REQUEST_URI']);
 
 <div class="row">
   <div class="col-md-12 guide">
+    <div class="guide-content">

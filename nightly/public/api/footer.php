@@ -26,11 +26,6 @@
     </div>
 
     <div class="footer-right">
-
-
-
-        <span class="footer-item"><a href="https://github.com/yarnpkg/website/edit/master/en/docs/cli/index.md">Edit this page</a></span>
-
     </div>
 
 
