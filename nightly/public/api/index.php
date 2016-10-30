@@ -63,13 +63,13 @@ function render_date($file) {
 // Let's start rendering :D
 require('header.php');
 ?>
-<div class="guide-content">
-  <p>These are the latest and greatest builds of Yarn. These builds are not guaranteed to be stable! Use at your own risk. Quick links:</p>
-  <ul>
-    <li><a href="/latest.json">/latest.json</a>: Latest version number and download links in JSON format</li>
-    <li><a href="/latest.tar.gz">/latest.tar.gz</a>: Tarball of the latest Yarn nightly release</li>
-    <li><a href="/latest.deb">/latest.deb</a>: Debian package of the latest Yarn nightly release</li>
-  </ul>
+
+<p>These are the latest and greatest builds of Yarn. These builds are not guaranteed to be stable! Use at your own risk. Quick links:</p>
+<ul>
+  <li><a href="/latest.json">/latest.json</a>: Latest version number and download links in JSON format</li>
+  <li><a href="/latest.tar.gz">/latest.tar.gz</a>: Tarball of the latest Yarn nightly release</li>
+  <li><a href="/latest.deb">/latest.deb</a>: Debian package of the latest Yarn nightly release</li>
+</ul>
 
 <h2>Latest Version</h2>
 <table>
