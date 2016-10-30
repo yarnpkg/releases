@@ -89,27 +89,34 @@ $latest = file_exists($latest_manifest_path)
   ? json_decode(file_get_contents($latest_manifest_path))
   : (object)[];
 foreach ($requests as $filename => $_) {
-  // Assumes there's only one file per extension
-  $extension = pathinfo($filename, PATHINFO_EXTENSION);
-  $latest->$extension = [
-    // TODO 'date' => ...
+  echo $filename, '... ';
+  $full_path = Config::ARTIFACT_PATH.$filename;
+
+  $metadata = ArtifactFileUtils::getMetadata(new SplFileInfo($full_path));
+  if (!$metadata) {
+    unlink($full_path); // Scary!
+    echo "Skipped (unknown type)\n";
+  }
+
+  $latest->{$metadata['type']} = [
+    'date' => $metadata['date'],
     'filename' => $filename,
+    'version' => $metadata['version'],
     'url' => 'https://nightly.yarnpkg.com/'.$filename,
   ];
 
   // If it's a Debian package, also copy it to the incoming directory.
   // This is used to populate the Debian repository.
-  if ($extension === 'deb') {
+  if ($metadata['type'] === 'deb') {
     copy(
       Config::ARTIFACT_PATH.$filename,
       Config::DEBIAN_INCOMING_PATH.$filename
     );
+    echo 'Queued for adding to Debian repo, ';
   }
+
+  echo "Done.\n";
 }
 file_put_contents($latest_manifest_path, json_encode($latest, JSON_PRETTY_PRINT));
 
-api_response(sprintf(
-  "Successfully archived these artifacts for build %s:\n%s",
-  $build_num,
-  implode("\n", array_keys($requests))
-));
+echo sprintf("\nArchiving of build %s completed!", $build_num);
