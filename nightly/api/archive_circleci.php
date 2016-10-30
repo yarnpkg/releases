@@ -10,13 +10,13 @@
  * the build information for realz.
  */
 
-require(__DIR__.'/../../lib/api-core.php');
+require(__DIR__.'/../lib/api-core.php');
 
 use Analog\Analog;
 use GuzzleHttp\Client;
 use GuzzleHttp\Promise;
 
-Analog::handler(__DIR__.'/../../logs/archive_circleci.log');
+Analog::handler(__DIR__.'/../logs/archive_circleci.log');
 
 const API_URL = 'https://circleci.com/api/v1.1/%s?circle-token=%s';
 

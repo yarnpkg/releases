@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 error_reporting(E_ALL);
-require('../../vendor/autoload.php');
+require('../vendor/autoload.php');
 
 // Latest files
 $latest_filenames = [];
