@@ -5,8 +5,6 @@ require(__DIR__.'/../vendor/autoload.php');
 
 use Analog\Analog;
 
-ob_start();
-
 function api_response($message) {
 	header('Content-Type: text/plain');
 	echo htmlspecialchars($message);
