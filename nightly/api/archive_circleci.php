@@ -10,13 +10,13 @@
  * the build information for realz.
  */
 
-require(__DIR__.'/../../lib/api-core.php');
+require(__DIR__.'/../lib/api-core.php');
 
 use Analog\Analog;
 use GuzzleHttp\Client;
 use GuzzleHttp\Promise;
 
-Analog::handler(__DIR__.'/../../logs/archive_circleci.log');
+Analog::handler(__DIR__.'/../logs/archive_circleci.log');
 
 const API_URL = 'https://circleci.com/api/v1.1/%s?circle-token=%s';
 
@@ -88,9 +88,8 @@ $results = Promise\unwrap($requests);
 $output = '';
 
 // Update latest.json to point to the newest files
-$latest_manifest_path = __DIR__.'/../latest.json';
-$latest = file_exists($latest_manifest_path)
-  ? json_decode(file_get_contents($latest_manifest_path))
+$latest = ArtifactManifest::exists()
+  ? ArtifactManifest::load();
   : (object)[];
 foreach ($requests as $filename => $_) {
   $output .= $filename.'... ';
@@ -121,7 +120,7 @@ foreach ($requests as $filename => $_) {
 
   $output .= "Done.\n";
 }
-file_put_contents($latest_manifest_path, json_encode($latest, JSON_PRETTY_PRINT));
+ArtifactManifest::save($latest);
 
 $output .= sprintf("\nArchiving of build %s completed!", $build_num);
 echo $output;

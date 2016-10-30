@@ -1,10 +1,10 @@
 temp/
 nightly/vendor/
-nightly/public/*.deb
-nightly/public/*.msi
-nightly/public/*.rpm
-nightly/public/*.tar.gz
-nightly/public/yarn-*.js
+nightly/artifacts/*.deb
+nightly/artifacts/*.msi
+nightly/artifacts/*.rpm
+nightly/artifacts/*.tar.gz
+nightly/artifacts/yarn-*.js
 nightly/logs/
-nightly/public/latest.json
+nightly/artifacts/latest.json
 nightly/deb-incoming/

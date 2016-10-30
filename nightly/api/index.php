@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 error_reporting(E_ALL);
-require('../../vendor/autoload.php');
+require('../vendor/autoload.php');
 
 // Latest files
 $latest_filenames = [];
 $latest_files = [];
-$latest_manifest = json_decode(file_get_contents(Config::ARTIFACT_PATH.'/latest.json'));
+$latest_manifest = ArtifactManifest::load();
 foreach ($latest_manifest as $type => $details) {
   $latest_files[] = ArtifactFileUtils::getMetadata(
     new SplFileInfo(Config::ARTIFACT_PATH.'/'.$details->filename)
