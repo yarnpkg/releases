@@ -89,7 +89,7 @@ $output = '';
 
 // Update latest.json to point to the newest files
 $latest = ArtifactManifest::exists()
-  ? ArtifactManifest::load();
+  ? ArtifactManifest::load()
   : (object)[];
 foreach ($requests as $filename => $_) {
   $output .= $filename.'... ';
