@@ -12,10 +12,10 @@ abstract class ArtifactManifest {
   }
 
   public static function save($contents) {
-    file_put_contents(self::PATH, json_encode($latest, JSON_PRETTY_PRINT));
+    file_put_contents(self::PATH, json_encode($contents, JSON_PRETTY_PRINT));
   }
 
-  public static function exists(): boolean {
+  public static function exists(): bool {
     return file_exists(self::PATH);
   }
 }
