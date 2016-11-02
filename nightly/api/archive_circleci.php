@@ -13,8 +13,6 @@
 require(__DIR__.'/../lib/api-core.php');
 
 use Analog\Analog;
-use GuzzleHttp\Client;
-use GuzzleHttp\Promise;
 
 Analog::handler(__DIR__.'/../logs/archive_circleci.log');
 
@@ -74,54 +72,10 @@ $project_uri = sprintf(
 $build = call_circleci($project_uri);
 validate_build($build);
 
-// Download the artifacts in parallel
-$artifact_client = new Client();
 $artifacts = call_circleci($project_uri.'/artifacts');
-$promises = [];
+$urls = [];
 foreach ($artifacts as $artifact) {
   $filename = basename($artifact->path);
-  $requests[$filename] = $artifact_client->getAsync($artifact->url, [
-    'sink' => Config::ARTIFACT_PATH.$filename,
-  ]);
+  $urls[$filename] = $artifact->url;
 }
-$results = Promise\unwrap($requests);
-$output = '';
-
-// Update latest.json to point to the newest files
-$latest = ArtifactManifest::exists()
-  ? ArtifactManifest::load()
-  : (object)[];
-foreach ($requests as $filename => $_) {
-  $output .= $filename.'... ';
-  $full_path = Config::ARTIFACT_PATH.$filename;
-
-  $metadata = ArtifactFileUtils::getMetadata(new SplFileInfo($full_path));
-  if (!$metadata) {
-    unlink($full_path); // Scary!
-    $output .= "Skipped (unknown type)\n";
-  }
-
-  $latest->{$metadata['type']} = [
-    'date' => $metadata['date'],
-    'filename' => $filename,
-    'version' => $metadata['version'],
-    'url' => 'https://nightly.yarnpkg.com/'.$filename,
-  ];
-
-  // If it's a Debian package, also copy it to the incoming directory.
-  // This is used to populate the Debian repository.
-  if ($metadata['type'] === 'deb') {
-    copy(
-      Config::ARTIFACT_PATH.$filename,
-      Config::DEBIAN_INCOMING_PATH.$filename
-    );
-    $output .= 'Queued for adding to Debian repo, ';
-  }
-
-  $output .= "Done.\n";
-}
-ArtifactManifest::save($latest);
-
-$output .= sprintf("\nArchiving of build %s completed!", $build_num);
-echo $output;
-Analog::info($output);
+ArtifactArchiver::archiveBuild($urls, $build_num);
