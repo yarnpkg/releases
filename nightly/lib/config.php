@@ -8,6 +8,10 @@ class Config {
 
   const CIRCLECI_TOKEN = 'CHANGEME';
 
+  const APPVEYOR_USERNAME = 'kittens';
+  const APPVEYOR_PROJECT_SLUG = 'yarn';
+  const APPVEYOR_WEBHOOK_AUTH_TOKEN = 'Bearer CHANGEME';
+
   const ARTIFACT_PATH = __DIR__.'/../artifacts/';
   const DEBIAN_INCOMING_PATH = __DIR__.'/../deb-incoming/';
 }

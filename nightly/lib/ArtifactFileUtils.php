@@ -10,6 +10,7 @@ abstract class ArtifactFileUtils {
   public static $type_names = [
     'tar' => 'Tarball',
     'deb' => 'Debian package',
+    'msi' => 'Windows installer',
     'rpm' => 'RPM',
     'js' => 'Standalone JS',
     'js-legacy' => 'Standalone JS (Node < 4.0)'
