@@ -25,9 +25,17 @@ function validate_build($build, $project) {
     $project->repositoryName !== Config::ORG_NAME.'/'.Config::REPO_NAME
   ) {
     api_response(sprintf(
-      'Not archiving; this build is not on the correct branch: %s/%s',
+      '[#%s] Not archiving; this build is not on the correct branch: %s/%s',
+      $build->version ?? $build->buildVersion,
       $project->repositoryName,
       $build->branch
+    ));
+  }
+  if (!empty($build->pullRequestId)) {
+    api_response(sprintf(
+      '[#%s] Not archiving; this is a pull request (%s)',
+      $build->version ?? $build->buildVersion,
+      $build->pullRequestId
     ));
   }
 }
@@ -52,7 +60,7 @@ if (empty($build_version)) {
 }
 if (!$build->passed) {
   api_response(sprintf(
-    'Build #%s in wrong status (passed = false), not archiving it',
+    '[#%s] Build in wrong status (passed = false), not archiving it',
     $build_version
   ));
 }
