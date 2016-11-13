@@ -30,7 +30,8 @@ class ArtifactArchiver {
       $output .= $filename.'... ';
       $full_path = Config::ARTIFACT_PATH.$filename;
 
-      $metadata = ArtifactFileUtils::getMetadata(new SplFileInfo($full_path));
+      $file = new SplFileInfo($full_path);
+      $metadata = ArtifactFileUtils::getMetadata($file);
       if (!$metadata) {
         unlink($full_path); // Scary!
         $output .= "Skipped (unknown type)\n";
@@ -39,6 +40,8 @@ class ArtifactArchiver {
       $latest->{$metadata['type']} = [
         'date' => $metadata['date'],
         'filename' => $filename,
+        'size_bytes' => $file->getSize(),
+        'size' => ArtifactFileUtils::formatSize($file->getSize()),
         'version' => $metadata['version'],
         'url' => 'https://nightly.yarnpkg.com/'.$filename,
       ];
