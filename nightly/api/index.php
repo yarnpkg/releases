@@ -14,7 +14,7 @@ foreach ($latest_manifest as $type => $details) {
   $latest_filenames[$details->filename] = true;
 }
 usort($latest_files, function ($a, $b) {
-  return strcmp($a['file']->getFileName(), $b['file']->getFileName());
+  return strcmp($a['filename'], $b['filename']);
 });
 
 // All available files
@@ -37,10 +37,10 @@ foreach ($dir as $file) {
   $grouped_files[$metadata['type']][] = $metadata;
 }
 
-function render_filename(SplFileInfo $file) {
+function render_filename(string $filename) {
 ?>
-  <a href="<?= htmlspecialchars($file->getFileName()) ?>">
-    <?= htmlspecialchars($file->getFileName()) ?>
+  <a href="<?= htmlspecialchars($filename) ?>">
+    <?= htmlspecialchars($filename) ?>
   </a>
 <?php
 }
@@ -78,9 +78,9 @@ require('header.php');
   <tbody>
     <?php foreach ($latest_files as $file) { ?>
       <tr>
-        <td><?= render_filename($file['file']) ?></td>
+        <td><?= render_filename($file['filename']) ?></td>
         <td><?= ArtifactFileUtils::getTypeName($file['type']) ?></td>
-        <td><?= ArtifactFileUtils::formatSize($file['file']->getSize()) ?></td>
+        <td><?= $file['size'] ?></td>
         <td><?= render_date($file) ?></td>
       </tr>
     <?php } ?>
@@ -118,8 +118,8 @@ require('header.php');
           <tbody>
             <?php foreach ($files as $file) { ?>
               <tr>
-                <td><?= render_filename($file['file']) ?></td>
-                <td><?= ArtifactFileUtils::formatSize($file['file']->getSize()) ?></td>
+                <td><?= render_filename($file['filename']) ?></td>
+                <td><?= $file['size'] ?></td>
                 <td><?= render_date($file) ?></td>
               </tr>
             <?php } ?>
