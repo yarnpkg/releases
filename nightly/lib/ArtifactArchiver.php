@@ -37,14 +37,7 @@ class ArtifactArchiver {
         $output .= "Skipped (unknown type)\n";
       }
 
-      $latest->{$metadata['type']} = [
-        'date' => $metadata['date'],
-        'filename' => $filename,
-        'size_bytes' => $file->getSize(),
-        'size' => ArtifactFileUtils::formatSize($file->getSize()),
-        'version' => $metadata['version'],
-        'url' => 'https://nightly.yarnpkg.com/'.$filename,
-      ];
+      $latest->{$metadata['type']} = $metadata;
 
       // If it's a Debian package, also copy it to the incoming directory.
       // This is used to populate the Debian repository.

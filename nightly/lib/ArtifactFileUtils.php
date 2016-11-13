@@ -46,10 +46,13 @@ abstract class ArtifactFileUtils {
 
     $date = strtotime($matches['date'].' '.$matches['time']. ' UTC');
     return [
-      'type' => $type,
       'date' => $date,
+      'filename' => $file->getFilename(),
+      'size_bytes' => $file->getSize(),
+      'size' => self::formatSize($file->getSize()),
+      'type' => $type,
       'version' => $matches['version'],
-      'file' => $file,
+      'url' => 'https://nightly.yarnpkg.com/'.$file->getFilename(),
     ];
   }
 
