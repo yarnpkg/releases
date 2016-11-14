@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "af4cd7f4fe6d842e744bc90d8c37c5df",
-    "content-hash": "5e67bd322303b6212df52601c5583380",
+    "hash": "fdaebe4b9405b0e78ccbcc3c5b3f4381",
+    "content-hash": "5c1343237fcb6f6ab789f68f799214b5",
     "packages": [
         {
             "name": "analog/analog",
@@ -226,49 +226,6 @@
                 "uri"
             ],
             "time": "2016-06-24 23:00:38"
-        },
-        {
-            "name": "jimmiw/php-time-ago",
-            "version": "0.4.14",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jimmiw/php-time-ago.git",
-                "reference": "80178cac870260b5297330ba38354af7eae0e342"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jimmiw/php-time-ago/zipball/80178cac870260b5297330ba38354af7eae0e342",
-                "reference": "80178cac870260b5297330ba38354af7eae0e342",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=4"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "timeago.inc.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jimmi Westerberg",
-                    "homepage": "http://www.westsworld.dk",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Simple module, that displays the date in a \"time ago\" format",
-            "homepage": "https://github.com/jimmiw/php-time-ago",
-            "keywords": [
-                "distance of time",
-                "time ago",
-                "time ago in words"
-            ],
-            "time": "2016-09-22 08:40:33"
         },
         {
             "name": "psr/http-message",
