@@ -1,8 +1,7 @@
 {
     "require": {
         "guzzlehttp/guzzle": "~6.0",
-        "analog/analog": "^1.0",
-        "jimmiw/php-time-ago": "^0.4.14"
+        "analog/analog": "^1.0"
     },
     "autoload": {
         "classmap": ["lib/"]
