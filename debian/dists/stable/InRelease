@@ -4,44 +4,44 @@ Hash: SHA256
 Origin: yarn
 Label: yarn
 Codename: stable
-Date: Mon, 14 Nov 2016 22:18:26 UTC
+Date: Mon, 24 Oct 2016 22:40:12 UTC
 Architectures: i386 amd64
 Components: main
 Description: Repository for stable releases of Yarn
 MD5Sum:
- 050dd87c527f005ff2cd04fcac80f981 1616 main/binary-i386/Packages
- 76e1ed5aa1227c0b5e4d3cc1f013fd79 881 main/binary-i386/Packages.gz
+ 1a6b3e8202e64caca2a105aa66ced492 1616 main/binary-i386/Packages
+ 0ee453170e2224f3535da20bc1a324d6 880 main/binary-i386/Packages.gz
  85dac1d9a2465f6c6e72298cb85de2a0 112 main/binary-i386/Release
- 050dd87c527f005ff2cd04fcac80f981 1616 main/binary-amd64/Packages
- 76e1ed5aa1227c0b5e4d3cc1f013fd79 881 main/binary-amd64/Packages.gz
+ 1a6b3e8202e64caca2a105aa66ced492 1616 main/binary-amd64/Packages
+ 0ee453170e2224f3535da20bc1a324d6 880 main/binary-amd64/Packages.gz
  14f32921fb2d9fe2ab04d55a0b430030 113 main/binary-amd64/Release
 SHA1:
- 1c9b8e84a14a9ddff54b3af0473361d11488be8e 1616 main/binary-i386/Packages
- 8f1496c7dee126152a377b3566871b4e71fd2915 881 main/binary-i386/Packages.gz
+ 1372e71fc59412ccebbb07cc32d98f1867f47f0c 1616 main/binary-i386/Packages
+ 1ab4850ce0ddb9fff824f9a0a51c162a42312180 880 main/binary-i386/Packages.gz
  88ea29f256af55b7d8e9d652a7901ff841252a98 112 main/binary-i386/Release
- 1c9b8e84a14a9ddff54b3af0473361d11488be8e 1616 main/binary-amd64/Packages
- 8f1496c7dee126152a377b3566871b4e71fd2915 881 main/binary-amd64/Packages.gz
+ 1372e71fc59412ccebbb07cc32d98f1867f47f0c 1616 main/binary-amd64/Packages
+ 1ab4850ce0ddb9fff824f9a0a51c162a42312180 880 main/binary-amd64/Packages.gz
  4b09406f996a093857851b0028767e62fb13d3b9 113 main/binary-amd64/Release
 SHA256:
- cbcd513415a961364faa569aab28e072adc11a86ad8f42627748104ba1cf8cd9 1616 main/binary-i386/Packages
- 5bd16d8dc44b247fc566ac8200682188dc09fcc4ab14a4cc607614875feba6ce 881 main/binary-i386/Packages.gz
+ db3db2a4b0a233b509a1f0d3340e4b3a959db2456c8dfec3b427b92addbdd5c4 1616 main/binary-i386/Packages
+ 36404ebd43dd06a1f5bfa069cee4e280c0287e44c4260ea438182a08fa5cddf3 880 main/binary-i386/Packages.gz
  db6303c63cb2ee55751fbc01ffe7c67863e46897790a461ba629dac897e0bf14 112 main/binary-i386/Release
- cbcd513415a961364faa569aab28e072adc11a86ad8f42627748104ba1cf8cd9 1616 main/binary-amd64/Packages
- 5bd16d8dc44b247fc566ac8200682188dc09fcc4ab14a4cc607614875feba6ce 881 main/binary-amd64/Packages.gz
+ db3db2a4b0a233b509a1f0d3340e4b3a959db2456c8dfec3b427b92addbdd5c4 1616 main/binary-amd64/Packages
+ 36404ebd43dd06a1f5bfa069cee4e280c0287e44c4260ea438182a08fa5cddf3 880 main/binary-amd64/Packages.gz
  3b0777e50007daa352a2e9b2c6932ca91879e2485ba563e44769e3f8f4a9b678 113 main/binary-amd64/Release
 -----BEGIN PGP SIGNATURE-----
 
-iQIcBAEBCAAGBQJYKjgyAAoJEEbCEw39JJf1x5MP/RS04GpGQBR9u6mdny+EZduf
-C59YIMFKunOBT2Q5qDZKUzyR88eZA9Ew8nDKGaKiuVkEIYYLtZAX7TV+UyYuZ0sx
-tPaX5Uvx6MS3xf+th034DgQghUtF846JrqpVSOvCEbzcT7iYeTJUicx43R4Fzq4I
-L19y5lv7hnK9JCdt5SYuZHhBIMvPQCeVkQLLIbod6T3myTWCpziREI093cxpG4V2
-6LamSnwakpVLYk62MHE+Y3WI/ChS0VY5vk4BjJdNXBDhioLL5WxH+/M1dDa/GFoF
-SBz7FoFpShWwdrm39Fk6WlKUCE3H6PffU79IqExEFvbwR3GYnte43o5pEFvF4pSs
-VffmM4LbdtX1sc30itTUG6cVnn7uLizW1BD/dL463AYYOtlG+kBlnZciMVDV2PE8
-RZttOjGNa66xygBMZMGNOG2t+hydal/CzZf7hyAwWuvOg6mSPzcgkooQas7G0VoY
-H2DRvwTa5Jk/PIKtB/YHwpdtnd/dOZucor+dmUYVATIT4HkA+sx6R3ZgzWQujfVv
-U6PpMZLQxbNN3c8/aqnPDxcTQq6n+U3leSDO+wuhb6db4S2SDz5g8QwMUkP3xMO7
-+pcS2QSkPaxOiTAJshjmS9SxcvSMgqUVJTAU3NL0gkIo6Sz49mG8K+P9nbNnVhmq
-qyhkrl2qxC0ZnTDHo3M8
-=owqg
+iQIcBAEBCAAGBQJYDo3MAAoJENEB94mdQfPDHNsQAJ1ZSESuF4s9hLNziNRsWZJt
+9MxrB2HFFTaDcE3Wl5xjaUemE1JUfD0m8B1u0vlMBxdCVKk55gciKtAyIixq7S1c
+oTpb6xivaXzjSZODTjRUGIUiFU7yyjQLIPYS5AefcKTacIRkZ5bF1cmB+SzG9XU6
+uZfVYb9y9x4sxYJplM1YK5rxvDNFGz43a58rIKmcad4b1H3UbnWrEsSkSB1NzMje
+8ianMYdsErDuAeC76AazzXiICfuGMwvvIT9zkH59PMXH122p/JeT60hPjcZdfqP1
++fOiaOJuxv77cVl0JozzAT/42O/iZjV2U/WzETi8hZvqNy/4Pp3qy7pvy7WHvAWl
+MOHpg1RbLh8tGaCQxfrR3wQjMfAPmn62LzZMF/Dl33A/Wo2A63k1E5FePRYhZcIF
++FeRQ+ATAwL+pw0HZVn58x69FxH7fizoyx10hJr3XjgkE1+CrIXN3i4JZvAY2aVF
+3SEzMgomWZAOS6umN6vAmSi63l4yXRUj0s0969pHcgD9NJEMbrsNIoCZgT3ZZe/l
+MikzliGQ7McTm/SkfLff3XMPJ39+DpFgEz19Hp0KfS5skKn0uZktAT64f50GFueM
+BhiYHsKk8d4Plps00392UhRRR6iGTF23mqtGJiBIflmK91zPNrCBbCRfy+4BSYxY
+tdwFoSKKEl/PFHDgzjOs
+=lTTP
 -----END PGP SIGNATURE-----
