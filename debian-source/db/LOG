@@ -1,0 +1,76 @@
+=============== Nov 15, 2016 (STD) ===============
+22:25:53.757401 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+22:25:53.759714 db@open opening
+22:25:53.760638 version@stat F·[] S·0B[] Sc·[]
+22:25:53.777538 db@janitor F·2 G·0
+22:25:53.777599 db@open done T·17.8459ms
+22:25:53.778208 db@close closing
+22:25:53.778838 db@close done T·627.2µs
+=============== Nov 15, 2016 (STD) ===============
+22:25:59.626160 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+22:25:59.626949 version@stat F·[] S·0B[] Sc·[]
+22:25:59.627036 db@open opening
+22:25:59.627323 journal@recovery F·1
+22:25:59.627929 journal@recovery recovering @1
+22:25:59.634509 memdb@flush created L0@2 N·1 S·294B "L22..c8c,v1":"L22..c8c,v1"
+22:25:59.635253 version@stat F·[1] S·294B[294B] Sc·[0.25]
+22:25:59.637620 db@janitor F·3 G·0
+22:25:59.637658 db@open done T·10.5835ms
+22:25:59.855244 db@close closing
+22:25:59.856693 db@close done T·1.4333ms
+=============== Nov 15, 2016 (STD) ===============
+22:26:18.615206 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+22:26:18.618702 version@stat F·[1] S·294B[294B] Sc·[0.25]
+22:26:18.618757 db@open opening
+22:26:18.618944 journal@recovery F·1
+22:26:18.619293 journal@recovery recovering @3
+22:26:18.629732 memdb@flush created L0@5 N·2 S·435B "E4d..ain,v4":"U.>..ble,v3"
+22:26:18.630328 version@stat F·[2] S·729B[729B] Sc·[0.50]
+22:26:18.633035 db@janitor F·4 G·0
+22:26:18.633110 db@open done T·14.3325ms
+22:26:18.662488 db@close closing
+22:26:18.663413 db@close done T·919.8µs
+=============== Nov 15, 2016 (STD) ===============
+22:26:18.689426 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+22:26:18.690404 version@stat F·[2] S·729B[729B] Sc·[0.50]
+22:26:18.690479 db@open opening
+22:26:18.690635 journal@recovery F·1
+22:26:18.690930 journal@recovery recovering @6
+22:26:18.694225 memdb@flush created L0@8 N·5 S·1KiB "E22..c8c,v10":"xFP..227,v7"
+22:26:18.694784 version@stat F·[3] S·2KiB[2KiB] Sc·[0.75]
+22:26:18.697729 db@janitor F·5 G·0
+22:26:18.697770 db@open done T·7.2725ms
+22:26:19.460537 db@close closing
+22:26:19.461614 db@close done T·1.0731ms
+=============== Nov 15, 2016 (STD) ===============
+22:26:24.989920 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+22:26:24.990715 version@stat F·[3] S·2KiB[2KiB] Sc·[0.75]
+22:26:24.990768 db@open opening
+22:26:24.990921 journal@recovery F·1
+22:26:24.991215 journal@recovery recovering @9
+22:26:24.996252 memdb@flush created L0@11 N·2 S·43KiB "E4d..ain,v13":"xCP..227,v12"
+22:26:24.997125 version@stat F·[4] S·45KiB[45KiB] Sc·[1.00]
+22:26:25.001314 db@janitor F·6 G·0
+22:26:25.001359 db@open done T·10.5734ms
+22:26:25.001444 table@compaction L0·4 -> L1·0 S·45KiB Q·14
+22:26:25.015195 table@build created L1@14 N·9 S·44KiB "E22..c8c,v10":"xFP..227,v7"
+22:26:25.015263 version@stat F·[0 1] S·44KiB[0B 44KiB] Sc·[0.00 0.00]
+22:26:25.031460 table@compaction committed F-3 S-615B Ke·0 D·1 T·28.2258ms
+22:26:25.031801 table@remove removed @11
+22:26:25.032133 table@remove removed @8
+22:26:25.032415 table@remove removed @5
+22:26:25.032713 table@remove removed @2
+22:26:25.033979 db@close closing
+22:26:25.035062 db@close done T·1.0773ms
+=============== Nov 15, 2016 (STD) ===============
+22:26:25.052803 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+22:26:25.054079 version@stat F·[0 1] S·44KiB[0B 44KiB] Sc·[0.00 0.00]
+22:26:25.054149 db@open opening
+22:26:25.054331 journal@recovery F·1
+22:26:25.054628 journal@recovery recovering @12
+22:26:25.057347 memdb@flush created L0@15 N·5 S·1KiB "E22..c8c,v19":"xFP..b62,v16"
+22:26:25.057906 version@stat F·[1 1] S·46KiB[1KiB 44KiB] Sc·[0.25 0.00]
+22:26:25.060534 db@janitor F·4 G·0
+22:26:25.060575 db@open done T·6.3952ms
+22:26:25.779929 db@close closing
+22:26:25.780842 db@close done T·911.7µs
