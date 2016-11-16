@@ -15,6 +15,11 @@ set -ex
 mkdir -p public/
 mv ../debian/* public/
 
+# Remove packages as Aptly complains with "file already exists and is different"
+# This is due to how it uses hardlinks, which Git doesn't store as hardlinks.
+# The "publish" command will copy across all the .deb files from Aptly's pool.
+rm -rf public/pool/
+
 # Add the package to the repo and publish the changes
 aptly -config=./.aptly.conf repo add yarn $1
 aptly -config=./.aptly.conf publish update -gpg-key=9D41F3C3 stable
