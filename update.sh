@@ -5,7 +5,8 @@ LATEST_VERSION=`curl --fail https://yarnpkg.com/latest-version`
 echo "Latest version is $LATEST_VERSION"
 
 # Check Debian version
-DEBIAN_VERSION=`reprepro -b debian --list-format '${version}' -A amd64 list stable yarn`
+./debian-source/update-aptly-config.sh
+DEBIAN_VERSION=`aptly -config=debian-source/.aptly.conf package search yarn | sort -r | head -1 | grep -oP "yarn_\K([0-9\.]+)"`
 ! dpkg --compare-versions $DEBIAN_VERSION lt $LATEST_VERSION
 DEBIAN_OUTDATED=$?
 
@@ -22,10 +23,13 @@ fi;
 
 if [ $DEBIAN_OUTDATED -ne 0 ]; then
   echo 'Updating Debian'
-  DEB_TEMP=`mktemp --suffix=.deb`
-  wget https://yarnpkg.com/latest.deb -O $DEB_TEMP
-  reprepro -b debian includedeb stable $DEB_TEMP
-  rm $DEB_TEMP
+  DEB_TEMP_DIR=`mktemp -d`
+  wget --content-disposition -P $DEB_TEMP_DIR https://yarnpkg.com/latest.deb
+  pushd debian-source
+  ./add-deb.sh "$DEB_TEMP_DIR/"*.deb
+  popd
+  rm "$DEB_TEMP_DIR/"*.deb
+  rmdir $DEB_TEMP_DIR
 fi;
 
 if [ $RPM_OUTDATED -ne 0 ]; then

@@ -2,6 +2,7 @@
 set -ex
 
 git reset --hard HEAD
+git clean -fd
 git pull
 
 ./update.sh
