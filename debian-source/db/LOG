@@ -109,3 +109,47 @@
 23:10:33.983374 db@open done T·14.990233ms
 23:10:34.556488 db@close closing
 23:10:34.556788 db@close done T·284.117µs
+=============== Nov 18, 2016 (PST) ===============
+13:25:10.499112 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+13:25:10.499370 version@stat F·[3 1] S·83KiB[38KiB 44KiB] Sc·[0.75 0.00]
+13:25:10.499385 db@open opening
+13:25:10.499451 journal@recovery F·1
+13:25:10.501418 journal@recovery recovering @24
+13:25:10.509749 memdb@flush created L0@26 N·2 S·36KiB "E4d..ain,v31":"xCP..449,v30"
+13:25:10.511981 version@stat F·[4 1] S·119KiB[75KiB 44KiB] Sc·[1.00 0.00]
+13:25:10.513183 db@janitor F·7 G·0
+13:25:10.513209 db@open done T·13.814662ms
+13:25:10.516181 db@close closing
+13:25:10.516385 db@close done T·200.372µs
+=============== Nov 18, 2016 (PST) ===============
+13:25:13.472880 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+13:25:13.473067 version@stat F·[4 1] S·119KiB[75KiB 44KiB] Sc·[1.00 0.00]
+13:25:13.473078 db@open opening
+13:25:13.473135 journal@recovery F·1
+13:25:13.474450 journal@recovery recovering @27
+13:25:13.475953 version@stat F·[4 1] S·119KiB[75KiB 44KiB] Sc·[1.00 0.00]
+13:25:13.476337 db@janitor F·7 G·0
+13:25:13.476356 db@open done T·3.271046ms
+13:25:13.485715 table@compaction L0·4 -> L1·1 S·119KiB Q·32
+13:25:13.508227 table@build created L1@31 N·19 S·117KiB "E22..c8c,v28":"xFP..449,v25"
+13:25:13.508371 version@stat F·[0 1] S·117KiB[0B 117KiB] Sc·[0.00 0.00]
+13:25:13.510535 table@compaction committed F-4 S-2KiB Ke·0 D·4 T·24.740763ms
+13:25:13.510612 table@remove removed @26
+13:25:13.510645 table@remove removed @23
+13:25:13.510670 table@remove removed @18
+13:25:13.510686 table@remove removed @15
+13:25:13.510705 table@remove removed @14
+13:25:13.527116 db@close closing
+13:25:13.527189 db@close done T·69.454µs
+=============== Nov 18, 2016 (PST) ===============
+13:25:13.539914 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+13:25:13.540191 version@stat F·[0 1] S·117KiB[0B 117KiB] Sc·[0.00 0.00]
+13:25:13.540218 db@open opening
+13:25:13.540302 journal@recovery F·1
+13:25:13.542273 journal@recovery recovering @29
+13:25:13.545907 memdb@flush created L0@32 N·5 S·1KiB "E22..c8c,v37":"xFP..b67,v34"
+13:25:13.547755 version@stat F·[1 1] S·118KiB[1KiB 117KiB] Sc·[0.25 0.00]
+13:25:13.548226 db@janitor F·4 G·0
+13:25:13.548265 db@open done T·8.035645ms
+13:25:14.141417 db@close closing
+13:25:14.141519 db@close done T·89.366µs
