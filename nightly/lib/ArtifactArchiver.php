@@ -14,13 +14,23 @@ class ArtifactArchiver {
     // Download the artifacts in parallel
     $artifact_client = new Client();
     $promises = [];
+    $file_handles = [];
     foreach ($artifacts as $filename => $url) {
+      $file_handle = fopen(Config::ARTIFACT_PATH.$filename, 'w');
       $requests[$filename] = $artifact_client->getAsync($url, [
-        'sink' => Config::ARTIFACT_PATH.$filename,
+        'sink' => $file_handle,
       ]);
+      $file_handles[] = $file_handle;
     }
     $results = Promise\unwrap($requests);
     $output = '';
+
+    // Guzzle locks the download files, and GPG also tries to lock them :/
+    // Easiest way to fix this is to explicitly close all the handles once
+    // Guzzle is done with them.
+    foreach ($file_handles as $file_handle) {
+      fclose($file_handle);
+    }
 
     // Update latest.json to point to the newest files
     $latest = ArtifactManifest::exists()
@@ -38,6 +48,10 @@ class ArtifactArchiver {
       }
 
       $latest->{$metadata['type']} = $metadata;
+
+      // GPG sign the artifact
+      $signature = GPG::sign($full_path, Config::GPG_NIGHTLY);
+      file_put_contents($full_path.'.asc', $signature);
 
       // If it's a Debian package, also copy it to the incoming directory.
       // This is used to populate the Debian repository.

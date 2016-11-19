@@ -74,7 +74,7 @@ $output = "Signed:\n";
 $promises = [];
 $uri = new \Rize\UriTemplate\UriTemplate();
 foreach ($releases_to_sign as $release) {
-  $signature = GPG::sign($release['download_path'], '9D41F3C3');
+  $signature = GPG::sign($release['download_path'], Config::GPG_RELEASE);
   unlink($release['download_path']);
 
   $upload_url = $uri->expand(
