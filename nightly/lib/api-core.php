@@ -12,9 +12,10 @@ function api_response($message) {
 	die();
 }
 function api_error($code, $message) {
-	header('Status: ' . $code . ' ' . $message);
+	$first_line = strtok($message, "\n");
+	header('Status: ' . $code . ' ' . $first_line);
 	header('Content-Type: text/plain');
-	echo htmlspecialchars($message);
+	echo $message;
 	Analog::warning($message);
 	die();
 }

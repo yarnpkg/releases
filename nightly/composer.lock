@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fdaebe4b9405b0e78ccbcc3c5b3f4381",
-    "content-hash": "5c1343237fcb6f6ab789f68f799214b5",
+    "hash": "dabd99790917402e0c8739d41e432bf6",
+    "content-hash": "3963b3cb379c4a0f29e838890b330aaf",
     "packages": [
         {
             "name": "analog/analog",
@@ -323,6 +323,50 @@
                 "psr-3"
             ],
             "time": "2016-10-10 12:19:37"
+        },
+        {
+            "name": "rize/uri-template",
+            "version": "0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rize/UriTemplate.git",
+                "reference": "2496aa674438f1c48fce122ffc44291ad7014717"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rize/UriTemplate/zipball/2496aa674438f1c48fce122ffc44291ad7014717",
+                "reference": "2496aa674438f1c48fce122ffc44291ad7014717",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Rize\\UriTemplate": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marut K",
+                    "homepage": "http://twitter.com/rezigned"
+                }
+            ],
+            "description": "PHP URI Template (RFC 6570) supports both expansion & extraction",
+            "keywords": [
+                "RFC 6570",
+                "template",
+                "uri"
+            ],
+            "time": "2015-04-17 16:12:22"
         }
     ],
     "packages-dev": [],

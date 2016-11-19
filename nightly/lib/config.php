@@ -6,6 +6,8 @@ class Config {
   const REPO_NAME = 'yarn';
   const BRANCH = 'master';
 
+  const SIGN_AUTH_TOKEN = 'CHANGEME';
+  const GITHUB_TOKEN = 'CHANGEME';
   const CIRCLECI_TOKEN = 'CHANGEME';
 
   const APPVEYOR_USERNAME = 'kittens';
