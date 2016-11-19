@@ -16,4 +16,7 @@ class Config {
 
   const ARTIFACT_PATH = __DIR__.'/../artifacts/';
   const DEBIAN_INCOMING_PATH = __DIR__.'/../deb-incoming/';
+
+  const GPG_NIGHTLY = 'FD2497F5';
+  const GPG_RELEASE = '9D41F3C3';
 }

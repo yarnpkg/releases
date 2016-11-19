@@ -5,6 +5,7 @@ nightly/artifacts/*.msi
 nightly/artifacts/*.rpm
 nightly/artifacts/*.tar.gz
 nightly/artifacts/yarn-*.js
+nightly/artifacts/*.asc
 nightly/logs/
 nightly/artifacts/latest.json
 nightly/deb-incoming/
