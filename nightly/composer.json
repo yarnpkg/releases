@@ -1,7 +1,8 @@
 {
     "require": {
         "guzzlehttp/guzzle": "~6.0",
-        "analog/analog": "^1.0"
+        "analog/analog": "^1.0",
+        "rize/uri-template": "^0.3.0"
     },
     "autoload": {
         "classmap": ["lib/"]
