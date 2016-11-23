@@ -5,6 +5,7 @@ class Config {
   const ORG_NAME = 'yarnpkg';
   const REPO_NAME = 'yarn';
   const BRANCH = 'master';
+  const RELEASE_BRANCH_SUFFIX = '-stable';
 
   const SIGN_AUTH_TOKEN = 'CHANGEME';
   const GITHUB_TOKEN = 'CHANGEME';
@@ -19,4 +20,7 @@ class Config {
 
   const GPG_NIGHTLY = 'FD2497F5';
   const GPG_RELEASE = '9D41F3C3';
+
+  const AUTHENTICODE_KEY = '/change/me.pfx';
+  const AUTHENTICODE_PASS = '/change/me.key';
 }

@@ -29,7 +29,11 @@ class ArtifactArchiver {
     // Easiest way to fix this is to explicitly close all the handles once
     // Guzzle is done with them.
     foreach ($file_handles as $file_handle) {
-      fclose($file_handle);
+      try {
+        fclose($file_handle);
+      } catch (Exception $e) {
+        // Ignore, maybe file was already closed.
+      }
     }
 
     // Update latest.json to point to the newest files
@@ -45,6 +49,7 @@ class ArtifactArchiver {
       if (!$metadata) {
         unlink($full_path); // Scary!
         $output .= "Skipped (unknown type)\n";
+        continue;
       }
 
       $latest->{$metadata['type']} = $metadata;
