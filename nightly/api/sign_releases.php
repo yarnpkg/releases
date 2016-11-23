@@ -19,18 +19,11 @@ api_error('403', 'Unauthorized');
 
 // Grab releases from GitHub
 $client = new Client();
-$releases = json_decode($client->get(
-  sprintf(
-    'https://api.github.com/repos/%s/%s/releases',
-    Config::ORG_NAME,
-    Config::REPO_NAME
-  ),
-  [
-    'headers' => [
-      'Authorization' => 'token '.Config::GITHUB_TOKEN,
-    ],
-  ]
-)->getBody());
+$releases = GitHub::call(
+  'repos/%s/%s/releases',
+  Config::ORG_NAME,
+  Config::REPO_NAME
+);
 
 $releases_to_sign = [];
 $promises = [];
