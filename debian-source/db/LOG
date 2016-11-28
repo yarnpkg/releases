@@ -337,3 +337,40 @@
 06:15:08.441978 db@open done T·6.043198ms
 06:15:09.124774 db@close closing
 06:15:09.124855 db@close done T·78.261µs
+=============== Nov 28, 2016 (PST) ===============
+15:10:05.040427 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+15:10:05.040638 version@stat F·[1 1] S·393KiB[1KiB 392KiB] Sc·[0.25 0.00]
+15:10:05.040647 db@open opening
+15:10:05.040686 journal@recovery F·1
+15:10:05.047960 journal@recovery recovering @74
+15:10:05.058636 memdb@flush created L0@76 N·2 S·45KiB "E4d..ain,v94":"xCP..81c,v93"
+15:10:05.059960 version@stat F·[2 1] S·439KiB[47KiB 392KiB] Sc·[0.50 0.00]
+15:10:05.060376 db@janitor F·5 G·0
+15:10:05.060396 db@open done T·19.742481ms
+15:10:05.066861 db@close closing
+15:10:05.067146 db@close done T·283.932µs
+=============== Nov 28, 2016 (PST) ===============
+15:10:09.398058 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+15:10:09.398232 version@stat F·[2 1] S·439KiB[47KiB 392KiB] Sc·[0.50 0.00]
+15:10:09.398241 db@open opening
+15:10:09.398288 journal@recovery F·1
+15:10:09.399572 journal@recovery recovering @77
+15:10:09.401194 version@stat F·[2 1] S·439KiB[47KiB 392KiB] Sc·[0.50 0.00]
+15:10:09.402259 db@janitor F·5 G·0
+15:10:09.402283 db@open done T·4.035178ms
+15:10:09.445610 db@close closing
+15:10:09.445686 db@close done T·72.738µs
+=============== Nov 28, 2016 (PST) ===============
+15:10:09.454395 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+15:10:09.454614 version@stat F·[2 1] S·439KiB[47KiB 392KiB] Sc·[0.50 0.00]
+15:10:09.454622 db@open opening
+15:10:09.454670 journal@recovery F·1
+15:10:09.455922 journal@recovery recovering @79
+15:10:09.459844 memdb@flush created L0@81 N·5 S·1KiB "E22..c8c,v100":"xFP..972,v97"
+15:10:09.461583 version@stat F·[3 1] S·441KiB[48KiB 392KiB] Sc·[0.75 0.00]
+15:10:09.462058 db@janitor F·6 G·0
+15:10:09.462090 db@open done T·7.459782ms
+15:10:10.044876 db@close closing
+15:10:10.044945 table@compaction L0·3 -> L1·1 S·441KiB Q·103
+15:10:10.045000 table@build exiting
+15:10:10.045048 db@close done T·169.535µs
