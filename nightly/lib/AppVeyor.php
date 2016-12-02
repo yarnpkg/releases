@@ -56,7 +56,10 @@ class AppVeyor {
 
   public static function validateBuild($build, $project) {
     if (
-      ($build->branch !== Config::BRANCH && !Str::endsWith($build->branch, Config::RELEASE_BRANCH_SUFFIX)) ||
+      (
+        $build->branch !== Config::BRANCH &&
+        !preg_match(Config::RELEASE_TAG_FORMAT, $build->branch)
+      ) ||
       $project->repositoryName !== Config::ORG_NAME.'/'.Config::REPO_NAME
     ) {
       api_response(sprintf(

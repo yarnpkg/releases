@@ -5,7 +5,7 @@ class Config {
   const ORG_NAME = 'yarnpkg';
   const REPO_NAME = 'yarn';
   const BRANCH = 'master';
-  const RELEASE_BRANCH_SUFFIX = '-stable';
+  const RELEASE_TAG_FORMAT = '/v[0-9]+(\.[0-9]+)*/';
 
   const SIGN_AUTH_TOKEN = 'CHANGEME';
   const GITHUB_TOKEN = 'CHANGEME';
