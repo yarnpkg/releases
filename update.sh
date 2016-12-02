@@ -6,7 +6,7 @@ echo "Latest version is $LATEST_VERSION"
 
 # Check Debian version
 ./debian-source/update-aptly-config.sh
-DEBIAN_VERSION=`aptly -config=debian-source/.aptly.conf package search yarn | sort -r | head -1 | grep -oP "yarn_\K([0-9\.]+)"`
+DEBIAN_VERSION=`aptly -config=debian-source/.aptly.conf package search yarn | sort -Vr | head -1 | grep -oP "yarn_\K([0-9\.]+)"`
 ! dpkg --compare-versions $DEBIAN_VERSION lt $LATEST_VERSION
 DEBIAN_OUTDATED=$?
 
