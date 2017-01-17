@@ -463,3 +463,45 @@
 10:50:10.964639 table@remove removed @89
 10:50:11.281098 db@close closing
 10:50:11.281199 db@close done T·97.853µs
+=============== Jan 16, 2017 (PST) ===============
+16:10:05.966168 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+16:10:05.966423 version@stat F·[0 1] S·530KiB[0B 530KiB] Sc·[0.00 0.01]
+16:10:05.966435 db@open opening
+16:10:05.966496 journal@recovery F·1
+16:10:05.968396 journal@recovery recovering @99
+16:10:05.980934 memdb@flush created L0@102 N·2 S·45KiB "E4d..ain,v121":"xCP..a22,v120"
+16:10:05.982857 version@stat F·[1 1] S·576KiB[45KiB 530KiB] Sc·[0.25 0.01]
+16:10:05.983400 db@janitor F·4 G·0
+16:10:05.983431 db@open done T·16.987583ms
+16:10:05.993665 db@close closing
+16:10:05.993925 db@close done T·256.853µs
+=============== Jan 16, 2017 (PST) ===============
+16:10:09.954925 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+16:10:09.955142 version@stat F·[1 1] S·576KiB[45KiB 530KiB] Sc·[0.25 0.01]
+16:10:09.955154 db@open opening
+16:10:09.955206 journal@recovery F·1
+16:10:09.956965 journal@recovery recovering @103
+16:10:09.958878 version@stat F·[1 1] S·576KiB[45KiB 530KiB] Sc·[0.25 0.01]
+16:10:09.959322 db@janitor F·4 G·0
+16:10:09.959348 db@open done T·4.18423ms
+16:10:09.990918 db@close closing
+16:10:09.990974 db@close done T·54.766µs
+=============== Jan 16, 2017 (PST) ===============
+16:10:09.997083 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+16:10:09.997244 version@stat F·[1 1] S·576KiB[45KiB 530KiB] Sc·[0.25 0.01]
+16:10:09.997294 db@open opening
+16:10:09.997347 journal@recovery F·1
+16:10:09.998957 journal@recovery recovering @105
+16:10:10.011138 memdb@flush created L0@107 N·5 S·1KiB "E22..c8c,v127":"xFP..d5c,v124"
+16:10:10.012335 version@stat F·[2 1] S·578KiB[47KiB 530KiB] Sc·[0.50 0.01]
+16:10:10.012745 db@janitor F·5 G·0
+16:10:10.012770 db@open done T·15.46119ms
+16:10:10.525214 table@compaction L0·2 -> L1·1 S·578KiB Q·129
+16:10:10.565329 table@build created L1@110 N·73 S·577KiB "E22..c8c,v127":"xFP..d5c,v124"
+16:10:10.565415 version@stat F·[0 1] S·577KiB[0B 577KiB] Sc·[0.00 0.01]
+16:10:10.567751 table@compaction committed F-2 S-1KiB Ke·0 D·2 T·42.417713ms
+16:10:10.567833 table@remove removed @107
+16:10:10.567886 table@remove removed @102
+16:10:10.568234 table@remove removed @101
+16:10:11.003742 db@close closing
+16:10:11.003920 db@close done T·184.972µs
