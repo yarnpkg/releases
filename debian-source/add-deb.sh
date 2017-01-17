@@ -20,9 +20,11 @@ mv ../debian/* public/
 # The "publish" command will copy across all the .deb files from Aptly's pool.
 rm -rf public/pool/
 
-# Add the package to the repo and publish the changes
-aptly -config=./.aptly.conf repo add yarn $1
+# Add the package to the repo and publish the changes. We need to republish
+# *both* stable and rc, due to the removal of the entire pool directory above.
+aptly -config=./.aptly.conf repo add $2 $1
 aptly -config=./.aptly.conf publish update -gpg-key=9D41F3C3 stable
+aptly -config=./.aptly.conf publish update -gpg-key=9D41F3C3 rc
 
 # Move the public files back to the right place
 mv public/* ../debian/
