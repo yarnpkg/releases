@@ -1,5 +1,5 @@
-Origin: . rc
-Label: . rc
+Origin: yarn
+Label: yarn-rc
 Archive: rc
 Architecture: i386
 Component: main

@@ -1,5 +1,5 @@
-Origin: . stable
-Label: . stable
+Origin: yarn
+Label: yarn-stable
 Archive: stable
 Architecture: all
 Component: main

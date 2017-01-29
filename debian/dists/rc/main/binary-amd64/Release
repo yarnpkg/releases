@@ -1,5 +1,5 @@
-Origin: . rc
-Label: . rc
+Origin: yarn
+Label: yarn-rc
 Archive: rc
 Architecture: amd64
 Component: main
