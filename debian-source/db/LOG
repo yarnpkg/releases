@@ -756,3 +756,45 @@
 20:40:34.606348 db@open done T·5.477974ms
 20:40:35.250590 db@close closing
 20:40:35.250715 db@close done T·132.021µs
+=============== Feb 20, 2017 (PST) ===============
+05:50:09.778343 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+05:50:09.801679 version@stat F·[0 1] S·746KiB[0B 746KiB] Sc·[0.00 0.01]
+05:50:09.801740 db@open opening
+05:50:09.801846 journal@recovery F·1
+05:50:09.803717 journal@recovery recovering @164
+05:50:09.845620 memdb@flush created L0@166 N·2 S·40KiB "E43..ain,v183":"xCP..c0f,v182"
+05:50:09.847240 version@stat F·[1 1] S·787KiB[40KiB 746KiB] Sc·[0.25 0.01]
+05:50:09.854058 db@janitor F·4 G·0
+05:50:09.854091 db@open done T·52.339237ms
+05:50:09.889628 db@close closing
+05:50:09.889708 db@close done T·79.143µs
+=============== Feb 20, 2017 (PST) ===============
+05:50:09.905564 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+05:50:09.906231 version@stat F·[1 1] S·787KiB[40KiB 746KiB] Sc·[0.25 0.01]
+05:50:09.906249 db@open opening
+05:50:09.906336 journal@recovery F·1
+05:50:09.908219 journal@recovery recovering @167
+05:50:09.920825 memdb@flush created L0@169 N·5 S·1KiB "E26..5a8,v189":"xFP..7f6,v186"
+05:50:09.922065 version@stat F·[2 1] S·788KiB[42KiB 746KiB] Sc·[0.50 0.01]
+05:50:09.922415 db@janitor F·5 G·0
+05:50:09.922435 db@open done T·16.177197ms
+05:50:10.178910 table@compaction L0·2 -> L1·1 S·788KiB Q·190
+05:50:10.238147 table@build created L1@172 N·102 S·788KiB "E22..c8c,v171":"xFP..7f6,v186"
+05:50:10.238240 version@stat F·[0 1] S·788KiB[0B 788KiB] Sc·[0.00 0.01]
+05:50:10.245765 table@compaction committed F-2 S-665B Ke·0 D·2 T·66.744939ms
+05:50:10.245881 table@remove removed @169
+05:50:10.245948 table@remove removed @166
+05:50:10.246131 table@remove removed @163
+05:50:10.587302 db@close closing
+05:50:10.587490 db@close done T·184.876µs
+=============== Feb 20, 2017 (PST) ===============
+05:50:10.600683 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+05:50:10.600946 version@stat F·[0 1] S·788KiB[0B 788KiB] Sc·[0.00 0.01]
+05:50:10.600962 db@open opening
+05:50:10.601077 journal@recovery F·1
+05:50:10.603140 journal@recovery recovering @170
+05:50:10.605645 version@stat F·[0 1] S·788KiB[0B 788KiB] Sc·[0.00 0.01]
+05:50:10.606417 db@janitor F·3 G·0
+05:50:10.606490 db@open done T·5.515904ms
+05:50:11.274861 db@close closing
+05:50:11.274966 db@close done T·101.088µs
