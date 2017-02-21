@@ -1,4 +1,5 @@
 temp/
+debian-source/db/LOG
 nightly/vendor/
 nightly/artifacts/*.deb
 nightly/artifacts/*.msi
