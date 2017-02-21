@@ -1,0 +1,5 @@
+Origin: yarn
+Label: yarn-stable
+Archive: stable
+Architecture: arm64
+Component: main

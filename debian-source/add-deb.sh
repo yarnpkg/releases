@@ -2,8 +2,8 @@
 # Updates the Debian repo for stable builds
 #
 # To create repo:
-# aptly -config=./.aptly.conf repo create -distribution=stable -component=main -architectures=amd64,i386,all yarn
-# aptly -config=./.aptly.conf publish repo -gpg-key=9D41F3C3 -architectures=i386,amd64,all yarn
+# aptly -config=./.aptly.conf repo create -distribution=stable -component=main -architectures=amd64,i386,armhf,arm64,all yarn
+# aptly -config=./.aptly.conf publish repo -gpg-key=9D41F3C3 -architectures=i386,amd64,armhf,arm64,all -origin=yarn -label="yarn-stable" yarn
 
 set -ex
 

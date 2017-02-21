@@ -1,0 +1,5 @@
+Origin: yarn
+Label: yarn-rc
+Archive: rc
+Architecture: armhf
+Component: main

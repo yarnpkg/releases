@@ -1,0 +1,5 @@
+Origin: yarn
+Label: yarn-stable
+Archive: stable
+Architecture: armhf
+Component: main
