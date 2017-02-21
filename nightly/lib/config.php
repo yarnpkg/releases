@@ -7,7 +7,11 @@ class Config {
   const BRANCH = 'master';
   const RELEASE_TAG_FORMAT = '/v[0-9]+(\.[0-9]+)*/';
 
+  // Auth token for sign_releases endpoint
   const SIGN_AUTH_TOKEN = 'CHANGEME';
+  // File types that should be GPG signed as part of GitHub releases
+  const SIGN_FILE_TYPES = '/\.(tar\.gz|js)$/';
+
   const GITHUB_TOKEN = 'CHANGEME';
   const CIRCLECI_TOKEN = 'CHANGEME';
 

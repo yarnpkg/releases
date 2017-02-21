@@ -25,38 +25,40 @@ $releases = GitHub::call(
   Config::REPO_NAME
 );
 
-$releases_to_sign = [];
+$files_to_sign = [];
 $promises = [];
 foreach ($releases as $release) {
-  $tarball = null;
-  $has_sig = false;
+  $files_in_release = [];
+  $signed_files = [];
+
   foreach ($release->assets as $asset) {
-    if (Str::endsWith($asset->name, '.tar.gz')) {
-      $tarball = $asset;
-    } else if (Str::endsWith($asset->name, '.tar.gz.asc')) {
-      $has_sig = true;
-      break;
+    if (preg_match(Config::SIGN_FILE_TYPES, $asset->name)) {
+      $files_in_release[] = $asset;
+    } else if (Str::endsWith($asset->name, '.asc')) {
+      $signed_files[str_replace('.asc', '', $asset->name)] = true;
     }
   }
-  if ($has_sig || !$tarball) {
-    // This release's tarball already has a signature, skip it
-    continue;
-  }
 
-  $download_path = tempnam(sys_get_temp_dir(), '');
-  $download_handle = fopen($download_path, 'w');
-  $releases_to_sign[] = [
-    'tarball' => $tarball,
-    'download_handle' => $download_handle,
-    'download_path' => $download_path,
-    'release' => $release,
-  ];
-  $promises[] = $client->getAsync($tarball->browser_download_url, [
-    'sink' => $download_handle,
-  ]);
+  foreach ($files_in_release as $asset) {
+    if (array_key_exists($asset->name, $signed_files)) {
+      // File is already signed
+      continue;
+    }
+    $download_path = tempnam(sys_get_temp_dir(), '');
+    $download_handle = fopen($download_path, 'w');
+    $files_to_sign[] = [
+      'asset' => $asset,
+      'download_handle' => $download_handle,
+      'download_path' => $download_path,
+      'release' => $release,
+    ];
+    $promises[] = $client->getAsync($asset->browser_download_url, [
+      'sink' => $download_handle,
+    ]);
+  }
 }
 
-if (count($releases_to_sign) === 0) {
+if (count($files_to_sign) === 0) {
   api_response('All releases have already been signed!');
 }
 
@@ -66,13 +68,13 @@ $responses = Promise\unwrap($promises);
 $output = "Signed:\n";
 $promises = [];
 $uri = new \Rize\UriTemplate\UriTemplate();
-foreach ($releases_to_sign as $release) {
-  $signature = GPG::sign($release['download_path'], Config::GPG_RELEASE);
-  unlink($release['download_path']);
+foreach ($files_to_sign as $file) {
+  $signature = GPG::sign($file['download_path'], Config::GPG_RELEASE);
+  unlink($file['download_path']);
 
   $upload_url = $uri->expand(
-    $release['release']->upload_url,
-    ['name' => $release['tarball']->name.'.asc']
+    $file['release']->upload_url,
+    ['name' => $file['asset']->name.'.asc']
   );
   $promises[] = $client->postAsync($upload_url, [
     'body' => $signature,
@@ -81,7 +83,7 @@ foreach ($releases_to_sign as $release) {
       'Content-Type' => 'application/pgp-signature',
     ],
   ]);
-  $output .= $release['release']->tag_name.': '.$release['tarball']->name."\n";
+  $output .= $file['release']->tag_name.': '.$file['asset']->name."\n";
 }
 
 // Upload all the signature files in parallel
