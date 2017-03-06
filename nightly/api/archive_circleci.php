@@ -1,6 +1,6 @@
 <?php
 /**
- * A CircleCI webhook that pulls buildartifacts from CircleCI into the local file
+ * A CircleCI webhook that pulls build artifacts from CircleCI into the local file
  * system.
  *
  * Unfortunately, CircleCI does not provide any way of authenticating webhook
@@ -16,66 +16,16 @@ use Analog\Analog;
 
 Analog::handler(__DIR__.'/../logs/archive_circleci.log');
 
-const API_URL = 'https://circleci.com/api/v1.1/%s?circle-token=%s';
-
-function call_circleci($uri) {
-  // TODO use Guzzle here
-  $url = sprintf(API_URL, $uri, Config::CIRCLECI_TOKEN);
-  return json_decode(file_get_contents($url, false, stream_context_create([
-    'http' => [
-      'header' => 'Accept: application/json',
-    ],
-  ])));
-}
-
-function validate_build($build) {
-  if (
-    $build->branch !== Config::BRANCH ||
-    $build->username !== Config::ORG_NAME ||
-    $build->reponame !== Config::REPO_NAME
-  ) {
-    api_response(sprintf(
-      'Not archiving; this build is not on the correct branch: %s/%s/%s',
-      $build->username,
-      $build->reponame,
-      $build->branch
-    ));
-  }
-}
-
-$payload = json_decode(file_get_contents('php://input'));
-if (empty($payload)) {
-  api_error('400', 'No payload provided');
-}
-// First validate the data that was passed in as the payload. If the branch
-// or repo name is not valid, we can quit early (before calling CircleCI's API)
-validate_build($payload->payload);
-$build_num = $payload->payload->build_num;
-if (empty($build_num)) {
-  api_error('400', 'No build number found');
-}
-if (
-  $payload->payload->status !== 'success' &&
-  $payload->payload->status !== 'fixed'
-) {
-  api_response(sprintf('Build #%s in wrong status (%s), not archiving it', $build_num, $payload->payload->status));
-}
-
-// Now, load this build from their API and revalidate it, to ensure it's legit
-// and the client isn't tricking us.
-$project_uri = sprintf(
-  'project/github/%s/%s/%s',
+$build = CircleCI::getAndValidateBuildFromPayload();
+$artifacts = CircleCI::call(
+  'project/github/%s/%s/%s/artifacts',
   Config::ORG_NAME,
   Config::REPO_NAME,
-  $build_num
+  $build->build_num
 );
-$build = call_circleci($project_uri);
-validate_build($build);
-
-$artifacts = call_circleci($project_uri.'/artifacts');
 $urls = [];
 foreach ($artifacts as $artifact) {
   $filename = basename($artifact->path);
   $urls[$filename] = $artifact->url;
 }
-ArtifactArchiver::archiveBuild($urls, $build_num);
+ArtifactArchiver::archiveBuild($urls, $build->build_num);
