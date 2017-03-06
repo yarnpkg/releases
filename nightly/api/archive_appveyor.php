@@ -6,9 +6,6 @@
 
 require(__DIR__.'/../lib/api-core.php');
 
-use Analog\Analog;
-
-Analog::handler(__DIR__.'/../logs/archive_appveyor.log');
 AppVeyor::validateWebhookAuth();
 
 $payload = json_decode(file_get_contents('php://input'));

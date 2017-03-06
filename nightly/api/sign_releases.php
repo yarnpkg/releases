@@ -5,11 +5,8 @@
 
 require(__DIR__.'/../lib/api-core.php');
 
-use Analog\Analog;
 use GuzzleHttp\Client;
 use GuzzleHttp\Promise;
-
-Analog::handler(__DIR__.'/../logs/sign_releases.log');
 
 // Validate auth token
 $auth_token = $_GET['token'] ?? '';

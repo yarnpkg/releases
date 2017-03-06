@@ -12,10 +12,6 @@
 
 require(__DIR__.'/../lib/api-core.php');
 
-use Analog\Analog;
-
-Analog::handler(__DIR__.'/../logs/archive_circleci.log');
-
 $build = CircleCI::getAndValidateBuildFromPayload();
 $artifacts = CircleCI::call(
   'project/github/%s/%s/%s/artifacts',

@@ -6,10 +6,8 @@
 
 require(__DIR__.'/../lib/api-core.php');
 
-use Analog\Analog;
 use GuzzleHttp\Client;
 
-Analog::handler(__DIR__.'/../logs/release_appveyor.log');
 AppVeyor::validateWebhookAuth();
 
 $payload = json_decode(file_get_contents('php://input'));

@@ -27,3 +27,6 @@ set_exception_handler(function($exception) {
 	Analog::warning($exception);
 	api_error('500', $exception->getMessage());
 });
+
+// Set log file name based on name of script
+Analog::handler(__DIR__.'/../logs/'.basename($_SERVER['SCRIPT_NAME'], '.php').'.log');
