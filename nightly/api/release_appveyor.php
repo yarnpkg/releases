@@ -58,17 +58,5 @@ $release = GitHub::getOrCreateRelease($tag);
 
 // Upload the file to the release
 $signed_filename = str_replace('-unsigned', '', $filename);
-$uri = new \Rize\UriTemplate\UriTemplate();
-$upload_url = $uri->expand(
-  $release->upload_url,
-  ['name' => $signed_filename]
-);
-$client->post($upload_url, [
-  'body' => fopen($signed_tempfile, 'r'),
-  'headers' => [
-    'Authorization' => 'token '.Config::GITHUB_TOKEN,
-    'Content-Type' => 'application/octet-stream',
-  ],
-]);
-
+GitHub::uploadReleaseArtifact($release, $signed_filename, $signed_tempfile)->wait();
 api_response('Published '.$signed_filename.' to '.$tag);

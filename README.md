@@ -29,6 +29,7 @@ Available endpoints on `nightly.yarnpkg.com`:
 * `/latest-[type]-version` (eg. `/latest-tar-version`, `/latest-msi-version`): Returns the version number of the latest nightly build containing a file of this format. This is useful because the Windows and Linux builds are performed separately, so the version number of the latest MSI may differ from the other version numbers.
 * `/[type]-builds` (eg. `/tar-builds`, `/msi-builds`): Returns a list of all the nightly builds available for this type. Used on the nightly builds page (https://yarnpkg.com/en/docs/nightly).
 * `/release_appveyor`: Handles stable release builds from AppVeyor. Grabs the MSI from AppVeyor, Authenticode signs it, then uploads it to the GitHub release. Called as a webhook from the AppVeyor build
+* `/release_circleci`: Similar to `release_appveyor`, except for CircleCI builds. Called a webhook from the CircleCI build
 * `/sign_releases`: GPG signs all `.tar.gz` and `.js` files for all GitHub releases, attaching the signatures as `.asc` files to the GitHub releases
 
 Files in the `nightly` directory:

@@ -51,7 +51,10 @@ class CircleCI {
    */
   public static function validateBuild($build) {
     if (
-      $build->branch !== Config::BRANCH ||
+      (
+        $build->branch !== Config::BRANCH &&
+        !preg_match(Config::RELEASE_TAG_FORMAT, $build->vcs_tag ?? '')
+      ) ||
       $build->username !== Config::ORG_NAME ||
       $build->reponame !== Config::REPO_NAME
     ) {
@@ -74,6 +77,21 @@ class CircleCI {
         $build->status
       ));
     }
+  }
+
+  public static function getArtifactsForBuild($build_num) {
+    $artifacts = static::call(
+      'project/github/%s/%s/%s/artifacts',
+      Config::ORG_NAME,
+      Config::REPO_NAME,
+      $build_num
+    );
+    $urls = [];
+    foreach ($artifacts as $artifact) {
+      $filename = basename($artifact->path);
+      $urls[$filename] = $artifact->url;
+    }
+    return $urls;
   }
 
   /**

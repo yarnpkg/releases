@@ -53,4 +53,28 @@ class GitHub {
       );
     }
   }
+
+  /**
+   * Upload an artifact to the specific GitHub release. Returns a promise so
+   * multiple files can be uploaded in parallel.
+   */
+  public static function uploadReleaseArtifact(
+    $release,
+    string $filename,
+    string $path
+  ): \GuzzleHttp\Promise\PromiseInterface {
+    $client = new Client();
+    $uri = new \Rize\UriTemplate\UriTemplate();
+    $upload_url = $uri->expand(
+      $release->upload_url,
+      ['name' => $filename]
+    );
+    return $client->postAsync($upload_url, [
+      'body' => fopen($path, 'r'),
+      'headers' => [
+        'Authorization' => 'token '.Config::GITHUB_TOKEN,
+        'Content-Type' => 'application/octet-stream',
+      ],
+    ]);
+  }
 }

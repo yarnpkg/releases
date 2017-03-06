@@ -7,23 +7,21 @@ use GuzzleHttp\Promise;
 
 class ArtifactArchiver {
   /**
-   * Archives a build locally. $artifacts is an array of filename => URL to
-   * download the artifact from the build server.
+   * Download multiple artifacts in parallel.
    */
-  public static function archiveBuild(array $artifacts, $build_identifier) {
+  public static function downloadArtifacts(array $artifacts, string $dir) {
     // Download the artifacts in parallel
     $artifact_client = new Client();
     $promises = [];
     $file_handles = [];
     foreach ($artifacts as $filename => $url) {
-      $file_handle = fopen(Config::ARTIFACT_PATH.$filename, 'w');
+      $file_handle = fopen($dir.$filename, 'w');
       $requests[$filename] = $artifact_client->getAsync($url, [
         'sink' => $file_handle,
       ]);
       $file_handles[] = $file_handle;
     }
     $results = Promise\unwrap($requests);
-    $output = '';
 
     // Guzzle locks the download files, and GPG also tries to lock them :/
     // Easiest way to fix this is to explicitly close all the handles once
@@ -35,12 +33,22 @@ class ArtifactArchiver {
         // Ignore, maybe file was already closed.
       }
     }
+    return $results;
+  }
+
+  /**
+   * Archives a build locally. $artifacts is an array of filename => URL to
+   * download the artifact from the build server.
+   */
+  public static function archiveBuild(array $artifacts, $build_identifier) {
+    $output = '';
+    $results = static::downloadArtifacts($artifacts, Config::ARTIFACT_PATH);
 
     // Update latest.json to point to the newest files
     $latest = ArtifactManifest::exists()
       ? ArtifactManifest::load()
       : (object)[];
-    foreach ($requests as $filename => $_) {
+    foreach ($artifacts as $filename => $_) {
       $output .= $filename.'... ';
       $full_path = Config::ARTIFACT_PATH.$filename;
 

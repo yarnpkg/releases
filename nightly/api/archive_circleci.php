@@ -13,15 +13,5 @@
 require(__DIR__.'/../lib/api-core.php');
 
 $build = CircleCI::getAndValidateBuildFromPayload();
-$artifacts = CircleCI::call(
-  'project/github/%s/%s/%s/artifacts',
-  Config::ORG_NAME,
-  Config::REPO_NAME,
-  $build->build_num
-);
-$urls = [];
-foreach ($artifacts as $artifact) {
-  $filename = basename($artifact->path);
-  $urls[$filename] = $artifact->url;
-}
+$urls = CircleCI::getArtifactsForBuild($build->build_num);
 ArtifactArchiver::archiveBuild($urls, $build->build_num);
