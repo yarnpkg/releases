@@ -43,15 +43,24 @@ class GitHub {
       );
     } catch (\GuzzleHttp\Exception\TransferException $e) {
       // Release doesn't exist yet, so create a new one
-      return static::post(
-        'repos/%s/%s/releases',
-        [Config::ORG_NAME, Config::REPO_NAME],
-        [
-          'name' => $name,
-          'tag_name' => $name,
-        ]
-      );
+      return static::createRelease($name);
     }
+  }
+
+  public static function createRelease(string $name) {
+    $latest_stable_version = Version::getLatestStableYarnVersion();
+    // Assumes release name is in format "v1.2.3"
+    $new_version = ltrim($name, 'v');
+    $is_stable = Version::isSameMinorVersion($latest_stable_version, $new_version);
+    return static::post(
+      'repos/%s/%s/releases',
+      [Config::ORG_NAME, Config::REPO_NAME],
+      [
+        'prerelease' => !$is_stable,
+        'name' => $name,
+        'tag_name' => $name,
+      ]
+    );
   }
 
   /**
