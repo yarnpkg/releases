@@ -32,29 +32,29 @@ class GitHub {
     return json_decode((string)$response->getBody());
   }
 
-  public static function getOrCreateRelease(string $name) {
+  public static function getOrCreateRelease(string $name, bool $is_stable) {
     // Check if this release exists
     try {
-      return static::call(
-        'repos/%s/%s/releases/tags/%s',
-        Config::ORG_NAME,
-        Config::REPO_NAME,
-        $name
-      );
+      return static::getRelease($name);
     } catch (\GuzzleHttp\Exception\TransferException $e) {
       // Release doesn't exist yet, so create a new one
-      return static::createRelease($name);
+      return static::createRelease($name, $is_stable);
     }
   }
 
-  public static function createRelease(string $name) {
-    $latest_stable_version = Version::getLatestStableYarnVersion();
-    // Assumes release name is in format "v1.2.3"
-    $new_version = ltrim($name, 'v');
-    $is_stable = Version::isSameMinorVersion($latest_stable_version, $new_version);
+  public static function getRelease(string $name) {
+    return static::call(
+      'repos/%s/%s/releases/tags/%s',
+      Config::RELEASE_ORG_NAME,
+      Config::RELEASE_REPO_NAME,
+      $name
+    );
+  }
+
+  public static function createRelease(string $name, bool $is_stable) {
     return static::post(
       'repos/%s/%s/releases',
-      [Config::ORG_NAME, Config::REPO_NAME],
+      [Config::RELEASE_ORG_NAME, Config::RELEASE_REPO_NAME],
       [
         'prerelease' => !$is_stable,
         'name' => $name,

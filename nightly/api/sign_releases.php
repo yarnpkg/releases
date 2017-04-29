@@ -18,8 +18,8 @@ api_error('403', 'Unauthorized');
 $client = new Client();
 $releases = GitHub::call(
   'repos/%s/%s/releases',
-  Config::ORG_NAME,
-  Config::REPO_NAME
+  Config::RELEASE_ORG_NAME,
+  Config::RELEASE_REPO_NAME
 );
 
 $files_to_sign = [];

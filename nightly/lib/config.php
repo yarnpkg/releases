@@ -7,6 +7,12 @@ class Config {
   const BRANCH = 'master';
   const RELEASE_TAG_FORMAT = '/v[0-9]+(\.[0-9]+)*/';
 
+  // GitHub organization and repository used for releases. This is normally the
+  // same as above, but can be changed for debugging purposes
+  //const RELEASE_ORG_NAME = 'Daniel15Test';
+  const RELEASE_ORG_NAME = Config::ORG_NAME;
+  const RELEASE_REPO_NAME = Config::REPO_NAME;
+
   // Auth token for sign_releases endpoint
   const SIGN_AUTH_TOKEN = 'CHANGEME';
   // File types that should be GPG signed as part of GitHub releases
@@ -18,6 +24,10 @@ class Config {
   const APPVEYOR_USERNAME = 'kittens';
   const APPVEYOR_PROJECT_SLUG = 'yarn';
   const APPVEYOR_WEBHOOK_AUTH_TOKEN = 'Bearer CHANGEME';
+
+  const JENKINS_URL = 'https://build.dan.cx/';
+  const JENKINS_VERSION_JOB = 'yarn-version';
+  const JENKINS_VERSION_TOKEN = 'CHANGEME';
 
   const ARTIFACT_PATH = __DIR__.'/../artifacts/';
   const DEBIAN_INCOMING_PATH = __DIR__.'/../deb-incoming/';

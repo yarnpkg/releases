@@ -53,10 +53,16 @@ preg_match('/yarn-(?P<version>.+?)(-unsigned)?\.msi/', $filename, $matches);
 if (empty($matches)) {
   api_error('400', 'Unexpected filename: '.$filename);
 }
-$tag = 'v'.$matches['version'];
-$release = GitHub::getOrCreateRelease($tag);
+$version = ltrim($matches['version'], 'v');
+$is_stable = Version::isStableVersionNumber($version);
+$release = GitHub::getOrCreateRelease('v'.$version, $is_stable);
 
 // Upload the file to the release
 $signed_filename = str_replace('-unsigned', '', $filename);
 GitHub::uploadReleaseArtifact($release, $signed_filename, $signed_tempfile)->wait();
-api_response('Published '.$signed_filename.' to '.$tag);
+
+$output =
+  'Published '.$signed_filename.' to '.$version."\n".
+  Release::performPostReleaseJobsIfReleaseIsComplete($version);
+
+api_response($output);

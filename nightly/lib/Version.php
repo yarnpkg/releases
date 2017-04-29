@@ -20,4 +20,13 @@ class Version {
     $b_parts = explode('.', $b);
     return $a_parts[0] === $b_parts[0] && $a_parts[1] === $b_parts[1];
   }
+
+  /**
+   * Determines if the specified NEW version number should be considered a
+   * stable release, based on the current stable version number of Yarn.
+   */
+  public static function isStableVersionNumber(string $new_version): bool {
+    $latest_stable_version = static::getLatestStableYarnVersion();
+    return static::isSameMinorVersion($latest_stable_version, $new_version);
+  }
 }

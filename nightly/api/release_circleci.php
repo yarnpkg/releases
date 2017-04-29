@@ -24,7 +24,9 @@ $artifacts = CircleCI::getArtifactsForBuild($build->build_num);
 $tempdir = Filesystem::createTempDir('yarn-release');
 ArtifactArchiver::downloadArtifacts($artifacts, $tempdir);
 
-$release = GitHub::getOrCreateRelease($build->vcs_tag);
+$version = ltrim($build->vcs_tag, 'v');
+$is_stable = Version::isStableVersionNumber($version);
+$release = GitHub::getOrCreateRelease($build->vcs_tag, $is_stable);
 $output = '['.$build->build_num.'] Uploaded to '.$build->vcs_tag.":\n";
 
 $promises = [];
@@ -40,5 +42,7 @@ foreach ($artifacts as $filename => $_) {
   }
 }
 $responses = Promise\unwrap($promises);
+
+$output .= "\n".Release::performPostReleaseJobsIfReleaseIsComplete($version);
 
 api_response($output);
