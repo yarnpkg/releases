@@ -10,6 +10,6 @@ PACKAGE_FILE=`basename $1`
 GPGKEY=6963F07F
 
 cp $1 .
-./sign-rpm.sh --key-id=$GPGKEY $PACKAGE_FILE
+rpmsign --addsign --key-id=$GPGKEY $PACKAGE_FILE
 createrepo --update .
 gpg2 --detach-sign --armor --local-user $GPGKEY --yes repodata/repomd.xml
