@@ -1,6 +1,36 @@
 Package: yarn
 Priority: optional
 Section: devel
+Installed-Size: 3984
+Maintainer: Yarn Developers <yarn@dan.cx>
+Architecture: all
+Version: 1.2.1-1
+Recommends: nodejs
+Conflicts: nodejs (<< 4.0.0)
+Filename: pool/main/y/yarn/yarn_1.2.1_all.deb
+Size: 669696
+MD5sum: d82cb2fb83ea299ee223d33cdd883ed6
+SHA1: d2c9744f62c1583863dfe3bb142c1125ca6674af
+SHA256: caab9863dc020a3c31a6bed92c56731e742d9877623f0fc4c671feb744cbf70f
+SHA512: f1c4d07aba9f391fda26b9f0b79f2239801d51900fe52ce4939331477985250351c5bb1abeec098fa085f79839d89cefd4cd81badace8879e2bac87224446767
+Description: Fast, reliable, and secure dependency management.
+ Yarn: Fast, reliable, and secure dependency management.
+ .
+ Fast: Yarn caches every package it downloads so it never needs to again. It
+ also parallelizes operations to maximize resource utilization so install times
+ are faster than ever.
+ .
+ Reliable: Using a detailed, but concise, lockfile format, and a deterministic
+ algorithm for installs, Yarn is able to guarantee that an install that worked
+ on one system will work exactly the same way on any other system.
+ .
+ Secure: Yarn uses checksums to verify the integrity of every installed package
+ before its code is executed.
+Homepage: https://yarnpkg.com/
+
+Package: yarn
+Priority: optional
+Section: devel
 Installed-Size: 3980
 Maintainer: Yarn Developers <yarn@dan.cx>
 Architecture: all
