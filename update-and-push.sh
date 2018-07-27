@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-#git reset --hard HEAD
+git reset --hard HEAD
 git clean -fd
 git pull
 
