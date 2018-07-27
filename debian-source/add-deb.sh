@@ -23,8 +23,8 @@ rm -rf public/pool/
 # Add the package to the repo and publish the changes. We need to republish
 # *both* stable and rc, due to the removal of the entire pool directory above.
 aptly -config=./.aptly.conf repo add $2 $1
-aptly -config=./.aptly.conf publish update -gpg-key=72ECF46A56B4AD39C907BBB71646B01B86E50310 stable
-aptly -config=./.aptly.conf publish update -gpg-key=72ECF46A56B4AD39C907BBB71646B01B86E50310 rc
+aptly -config=./.aptly.conf publish update -gpg-key=E074D16EB6FF4DE3 stable
+aptly -config=./.aptly.conf publish update -gpg-key=E074D16EB6FF4DE3 rc
 
 # Move the public files back to the right place
 mv public/* ../debian/
