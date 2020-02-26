@@ -12,7 +12,7 @@ updateDebian() {
   if [ $DEBIAN_OUTDATED -ne 0 ]; then
     echo 'Updating Debian'
     DEB_TEMP_DIR=`mktemp -d`
-    wget --content-disposition -P $DEB_TEMP_DIR https://yarnpkg.com/$4
+    wget --content-disposition -P $DEB_TEMP_DIR https://classic.yarnpkg.com/$4
     pushd debian-source
     ./add-deb.sh "$DEB_TEMP_DIR/"*.deb $2 $3
     popd
@@ -32,7 +32,7 @@ updateRPM() {
   if [ $RPM_OUTDATED -ne 0 ]; then
     echo 'Updating RPM'
     RPM_TEMP_DIR=`mktemp -d`
-    wget --content-disposition -P $RPM_TEMP_DIR https://yarnpkg.com/latest.rpm
+    wget --content-disposition -P $RPM_TEMP_DIR https://classic.yarnpkg.com/latest.rpm
     pushd rpm
     ./add-rpm-package.sh "$RPM_TEMP_DIR/"*.rpm
     popd
@@ -42,7 +42,7 @@ updateRPM() {
 }
 
 updateStable() {
-  version=`curl --fail https://yarnpkg.com/latest-version`
+  version=`curl --fail https://classic.yarnpkg.com/latest-version`
   echo "==== Latest stable version is $version ===="
 
   updateDebian $version yarn stable latest.deb
@@ -56,7 +56,7 @@ updateStable() {
 }
 
 updateRC() {
-  version=`curl --fail https://yarnpkg.com/latest-rc-version`
+  version=`curl --fail https://classic.yarnpkg.com/latest-rc-version`
   echo "==== Latest RC version is $version ===="
 
   updateDebian $version yarn-rc rc latest-rc.deb
