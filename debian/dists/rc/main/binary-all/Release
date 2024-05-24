@@ -1,5 +1,6 @@
 Origin: yarn
 Label: yarn-rc
 Archive: rc
+Suite: rc
 Architecture: all
 Component: main

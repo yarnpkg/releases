@@ -1,5 +1,6 @@
 Origin: yarn
 Label: yarn-rc
 Archive: rc
+Suite: rc
 Architecture: i386
 Component: main
