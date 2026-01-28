@@ -2,5 +2,6 @@ Origin: yarn
 Label: yarn-rc
 Archive: rc
 Suite: rc
+Codename: rc
 Architecture: amd64
 Component: main

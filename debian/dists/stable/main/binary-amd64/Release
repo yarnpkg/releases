@@ -2,5 +2,6 @@ Origin: yarn
 Label: yarn-stable
 Archive: stable
 Suite: stable
+Codename: stable
 Architecture: amd64
 Component: main
